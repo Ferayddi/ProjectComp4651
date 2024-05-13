@@ -7,7 +7,16 @@
     "start": "cross-env NODE_ENV=prod node index.js",
     "dev": "cross-env NODE_ENV=dev nodemon index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ferayddi/ProjectComp4651.git"
+  },
   "keywords": [],
+  "author": "CHAU, Wang Yik",
+  "bugs": {
+    "url": "https://github.com/Ferayddi/ProjectComp4651/issues"
+  },
+  "homepage": "https://github.com/Ferayddi/ProjectComp4651#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
