@@ -1,59 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AuthProvider from 'react-auth-kit';
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated'
+
+import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
 
 import Layout from './Layout/Layout.jsx';
 // Import the components you will route to
+import Navbar from "./Components/NavBar/NavBar.jsx";
 import HomePage from './Home/HomePage.jsx';
 import LoginPage from './Login/LoginPage.jsx';
+import createStore from "react-auth-kit/createStore";
+
 
 
 function App() {
-  const [count, setCount] = useState(0)
+
+    const store = createStore({
+        authName:'_auth',
+        authType:'cookie',
+        cookieDomain: window.location.hostname,
+        cookieSecure: false,
+    });
 
   return (
-    <Router>
-      {/* <div> */}
-        {/* Set up the Routes for your application */}
-        <Routes>
-          <Route path="/" element={<Layout />}>
-          {/* Route for the HomePage component */}
-            <Route path="/" element={<HomePage />} />
-
-            {/* Route for the Login component */}
-            <Route path="/login" element={<LoginPage />} />
-          </Route>
-        </Routes>
-      {/* </div> */}
-    </Router>
+      <AuthProvider store={store}>
+          <Router>
+              {!useIsAuthenticated && <Navbar />}
+              <Routes>
+                  <Route path="/login" element={<LoginPage />} />
+                  {/*<Route path="/" element={<Layout />}>*/}
+                  <Route element={<AuthOutlet fallbackPath='/login' />}>
+                    <Route path="/" element={<HomePage />} />
+                  </Route>
+                  {/*</Route>*/}
+              </Routes>
+          </Router>
+      </AuthProvider>
   );
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="text-4xl" >Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
 }
 
 export default App
