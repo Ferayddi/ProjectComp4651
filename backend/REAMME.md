@@ -24,8 +24,10 @@ This project is developed using Node.js (Express.js) and PostgreSQL.
    - Or you can modify the environment variables and create the database accordingly.
 
 3. Install node.js 20.12.2. (Recommend using nvm for Node.js version control)
+   - node.js: https://nodejs.org/en
+   - nvm: https://github.com/nvm-sh/nvm
 
-4. Run
+5. Run
    - **npm ci** to install all the dependencies
    - **npm run dev** to start the project
 
