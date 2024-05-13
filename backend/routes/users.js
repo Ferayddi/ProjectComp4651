@@ -1,9 +1,9 @@
 const express = require('express')
+const {register} = require('../controllers/userController')
+const authentication = require('../middleware/authentication')
 router = express.Router()
 
-
-const bcrypt = require('bcrypt')
-const jwt = require("jsonwebtoken");
+router.post('/register', authentication.validateNewUser, register)
 
 
 module.exports = router

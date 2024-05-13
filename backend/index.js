@@ -23,10 +23,10 @@ server.listen(process.env.PORT || 8080, () => {
     console.log(`server is listening on ${process.env.PORT || 8080}`);
 });
 
-db.sync({ force: true }).then(() => {
-    console.log(`Database connected to comp4651project`)
-    console.log("db has been re sync")
-})
+db.sync().then(() => {
+    console.log('Database connected to comp4651project');
+    console.log('db has been synced');
+});
 
 const userRouters = require('./routes/users')
 
