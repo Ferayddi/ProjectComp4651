@@ -41,17 +41,23 @@ const LoginPage = () => {
                   (response) => {
                       if(response.status === 200) {
                           console.log("here")
-                          if(signIn({
-                              auth: {
-                                  token: response.token,
-                                  type: 'Bearer'
-                              },
-                              userState: {
-                                  userName: response.userName,
-                              }
-                          })){
-                              navigate("/");
-                              window.location.reload();
+                          console.log(response)
+                          if(
+                              signIn({
+                                  auth: {
+                                      token: response.token,
+                                      type: 'Bearer'
+                                  },
+                                  userState: {
+                                      userName: response.userName,
+                                  }
+                              })
+                          ){
+                              // navigate("/");
+                              // window.location.reload();
+                              console.log("sign in")
+                              console.log(response.userName)
+                              console.log(response.token)
                           }else {
                               console.log("error")
                           }
@@ -65,7 +71,8 @@ const LoginPage = () => {
                           }
                       }
                   }
-              ).catch(()=>{
+              ).catch((error)=>{
+                  console.log(error)
                   setSignInState(false)
                   setErrorMessage("Unexpected Error, Try later")
               })

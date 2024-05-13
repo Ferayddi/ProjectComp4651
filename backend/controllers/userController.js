@@ -47,7 +47,7 @@ const login = async (req, res) => {
             const token = jwt.sign({ userName: user.userName }, process.env.JWT_KEY);
             res.cookie("token", token, { httpOnly: true });
 
-            return res.status(200).json({ status:200, userName:user.userName});
+            return res.status(200).json({ status:200, token: token, userName:user.userName});
         } else {
             return res.status(401).json({status: 401, error:"Incorrect password"})
         }
