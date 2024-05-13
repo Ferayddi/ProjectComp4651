@@ -2,9 +2,33 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Layout from './Layout/Layout.jsx';
+// Import the components you will route to
+import HomePage from './Home/HomePage.jsx';
+import LoginPage from './Login/LoginPage.jsx';
+
 
 function App() {
   const [count, setCount] = useState(0)
+
+  return (
+    <Router>
+      <div>
+        {/* Set up the Routes for your application */}
+        <Routes>
+          <Route path="/" element={<Layout />}>
+          {/* Route for the HomePage component */}
+            <Route path="/" element={<HomePage />} />
+
+            {/* Route for the Login component */}
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
+  );
 
   return (
     <>
