@@ -1,9 +1,44 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
+
+@keyframes wave-animation {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+.wave {
+  display: inline-block;
+  overflow: hidden;
+  /* Vertical alignment to keep inline elements in line */
+  vertical-align: bottom;
+}
+
+span .wave {
+  display: inline-block;
+  animation-name: wave-animation;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  /* Slightly delay each letter's animation */
+  animation-delay: calc(0.1s * var(--i));
+  transform-origin: bottom center; /* Base the rotation around the bottom center of each character */
+}
+
+
+
+
 
 .logo {
   height: 6em;

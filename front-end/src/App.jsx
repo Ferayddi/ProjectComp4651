@@ -15,7 +15,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      {/* <div> */}
         {/* Set up the Routes for your application */}
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -26,7 +26,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
           </Route>
         </Routes>
-      </div>
+      {/* </div> */}
     </Router>
   );
 
