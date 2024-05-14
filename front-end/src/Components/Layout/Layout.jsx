@@ -5,7 +5,6 @@ import useAuth from '../../Hook/isAuthenticated.jsx';
 import LogoutIcon from '../../assets/logout.png'
 import LoginIcon from '../../assets/login.png'
 import secureLocalStorage from "react-secure-storage";
-import text_logo from "../../assets/text_logo.png";
 import './Layout.css'
 import menu_icon from "../../assets/menu_icon.png";
 import {useEffect, useState} from "react";
@@ -40,7 +39,6 @@ const Layout = () => {
     return (
         <div className="w-full">
             <nav className="flex flex-row text-xl w-full items-center gap-8">
-                <img src = {text_logo} alt="" className='logo'></img>
                 <ul className={mobileMenu ? 'hide-mobile-menu':''}>
                     <li>
                         <Link className="text-white" to="/">
