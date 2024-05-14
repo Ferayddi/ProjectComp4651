@@ -26,6 +26,7 @@ COPY pyspark/requirement.txt .
 RUN pip install --no-cache-dir -r requirement.txt
 
 RUN python -m spacy download en_core_web_sm
+RUN python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 
 COPY pyspark/ ./
 
