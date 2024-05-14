@@ -57,6 +57,13 @@ const Layout = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link className="text-white" to="/crawl">
+                            <Typography variant="h5" gutterBottom>
+                                Crawl
+                            </Typography>
+                        </Link>
+                    </li>
+                    <li>
                         <Link className="text-white" to="/team">
                             <Typography variant="h5" gutterBottom>
                                 Our team

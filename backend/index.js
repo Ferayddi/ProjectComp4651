@@ -28,10 +28,12 @@ db.sync().then(() => {
 
 const userRouters = require("./routes/users");
 const uploadRouters = require("./routes/upload");
+const neranalysisRouter = require('./routes/neranalysis')
 
 app.use(express.json());
 app.use("/users", userRouters);
 app.use("/upload", uploadRouters);
+app.use('/neranalysis', neranalysisRouter)
 
 app.get("/", (req, res) => {
   res.send("Server online");
