@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Typography, Paper } from '@mui/material';
 import Spacer from '../General/components/Spacer.jsx';
-import {TeamText} from '../General/constants/constants.js';
+import {TeamText} from '../../constants/constants.js';
 
 const TeamPage = () => {
   return (
