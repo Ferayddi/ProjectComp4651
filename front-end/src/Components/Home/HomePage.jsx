@@ -16,8 +16,8 @@ const HomePage = () => {
   return (
     <div className="w-full flex flex-col z-10 bg-black">
         <Spacer height="10em" />
-        <div className=" flex flex-col justify-start px-5 text-white">
-          <Typography variant="h1" gutterBottom>
+        <div className=" flex flex-col items-center justify-start px-5 text-white">
+          <Typography className="text-center" variant="h1" gutterBottom>
             Welcome to our Home Page
           </Typography>
 
