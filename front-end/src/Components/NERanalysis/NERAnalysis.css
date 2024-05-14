@@ -1,0 +1,66 @@
+.NERAnalysis {
+    margin: 20px auto;
+    display: flex;
+    /*align-items: center;*/
+    justify-content: space-between;
+    width: 90%;
+}
+
+.NERAnalysis-left{
+    flex-basis: 40%;
+}
+
+.NERAnalysis-right{
+    flex-basis: 56%;
+}
+
+.NERAnalysis-img{
+    width: 90%;
+    border-radius: 16px;
+}
+
+.NERAnalysis h3{
+    font-weight: 600;
+    font-size: 20px;
+    color: #212EA0;
+}
+
+.NERAnalysis h2{
+    font-size: 28px;
+    color: #000F38;
+    margin: 10px 0;
+    max-width: 700px;
+}
+
+.NERAnalysis p {
+    text-align: justify;
+    font-size: 18px;
+    color: #676767;
+    margin-bottom: 15px;
+}
+
+/* ----- media query -----*/
+@media (max-width: 650px) {
+    .NERAnalysis{
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    .NERAnalysis-left{
+        flex-basis: 100%;
+        margin: 5px;
+    }
+    .NERAnalysis-right{
+        flex-basis: 100%;
+        margin: 5px;
+        order: 2;
+    }
+    .NERAnalysis p {
+        font-size: 14px;
+    }
+    .NERAnalysis h2{
+        font-size: 20px;
+    }
+    .NERAnalysis h3{
+        font-size: 18px;
+    }
+}

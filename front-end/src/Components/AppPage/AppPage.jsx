@@ -3,13 +3,15 @@ import { Typography } from '@mui/material'
 import Spacer from '../General/components/Spacer.jsx'
 import AnalysisComponent from './AnalysisComponent.jsx'
 import Wave from 'react-wavify'
+import NERAnalysis from "../NERanalysis/NERAnalysis.jsx";
 const AppPage = () => {
   return (
-    <div className="w-full flex flex-col bg-black  min-h-dvh relative">
-            <Spacer height={"6em"} />
+    <div className="w-full flex flex-col bg-white  min-h-dvh relative">
+            <NERAnalysis/>
             <Spacer height={"6em"} />
             <div className="flex flex-row w-full justify-center">
               <div className="flex w-3/4">
+
                 <AnalysisComponent />
               </div>
             </div>
