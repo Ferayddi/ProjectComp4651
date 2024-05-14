@@ -6,14 +6,11 @@ import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import {login} from "../../Services/authService.js";
 import Copyright from "../CopyRight/CopyRight.jsx";
-import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import * as Yup from 'yup';
 
 const LoginPage = () => {
 
     let navigate = useNavigate();
-
-    const signIn = useSignIn();
 
 
     const [signInState, setSignInState] = useState(true);
@@ -40,27 +37,8 @@ const LoginPage = () => {
               login(values.userEmail,values.password).then(
                   (response) => {
                       if(response.status === 200) {
-                          console.log("here")
-                          console.log(response)
-                          if(
-                              signIn({
-                                  auth: {
-                                      token: response.token,
-                                      type: 'Bearer'
-                                  },
-                                  userState: {
-                                      userName: response.userName,
-                                  }
-                              })
-                          ){
-                              // navigate("/");
-                              // window.location.reload();
-                              console.log("sign in")
-                              console.log(response.userName)
-                              console.log(response.token)
-                          }else {
-                              console.log("error")
-                          }
+                          navigate("/");
+                          window.location.reload();
                       } else {
                           setSignInState(false)
                           setErrorMessage(response.error)

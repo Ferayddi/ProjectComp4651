@@ -19,9 +19,8 @@ const register = async (req, res) => {
         if (user) {
             let token = jwt.sign({ userName: user.userName }, process.env.JWT_KEY);
 
-            res.cookie("token", token, { httpOnly: true });
 
-            return res.status(201).json({ status:201, userName:user.userName});
+            return res.status(201).json({ status:201, accessToken: token, userName:user.userName});
 
         }
     } catch (error) {
@@ -45,9 +44,8 @@ const login = async (req, res) => {
 
         if (await bcrypt.compare(password, user.password)){
             const token = jwt.sign({ userName: user.userName }, process.env.JWT_KEY);
-            res.cookie("token", token, { httpOnly: true });
 
-            return res.status(200).json({ status:200, token: token, userName:user.userName});
+            return res.status(200).json({ status:200, accessToken: token, userName:user.userName});
         } else {
             return res.status(401).json({status: 401, error:"Incorrect password"})
         }
