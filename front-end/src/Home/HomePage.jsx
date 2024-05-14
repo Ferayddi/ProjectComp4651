@@ -3,6 +3,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Spacer from '../General/components/Spacer.jsx';
 import WaveText from '../General/components/WaveText';
 import Wave from 'react-wavify'
+import {HomePageText} from '../General/constants/constants.js';
 
 //Icons for list of icons:
 import CollectionsBookmarkTwoToneIcon from '@mui/icons-material/CollectionsBookmarkTwoTone';
@@ -15,9 +16,9 @@ const HomePage = () => {
   return (
     <div className="w-full flex flex-col">
         <Spacer height="5em" />
-        <div className=" flex flex-col justify-start">
+        <div className=" flex flex-col justify-start px-5">
           <Typography variant="h1" gutterBottom>
-            Welcome to Home Page
+            Welcome to our Home Page
           </Typography>
 
           <Spacer height="15em" />
@@ -25,14 +26,14 @@ const HomePage = () => {
             <Typography variant="h4" gutterBottom>
               Scroll down to learn more
             </Typography>
-            <p>Made this page pretty</p>
+            <p>About the features of our app</p>
             <ExpandMoreIcon />
           </div>
         </div>
 
         <Spacer height="5em" />
 
-        <div className="flex flex-col w-full relative text-white">
+        <div className="flex flex-col w-full relative ">
           <Spacer height="5em" />
           <Wave fill='#5e9ef1'
           paused={false}
@@ -61,19 +62,32 @@ const HomePage = () => {
 
           <Spacer />
 
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
             <Typography variant="h2" gutterBottom>
               Collect Data
+            </Typography>
+            <Typography className="px-4 w-3/4" variant="h6" gutterBottom>
+              {HomePageText.sections["Crawling"]}
             </Typography>
             <Spacer height="3em"/>
             <Typography variant="h3" gutterBottom>
               Perform cluster analysis
             </Typography>
+            <Typography className="px-4 w-3/4" variant="h6" gutterBottom>
+              {HomePageText.sections["Analysis"]}
+            </Typography>
             <Spacer height="3em"/>
             <Typography variant="h4" gutterBottom>
               Retrieve results
             </Typography>
+            <Typography className="px-4 w-3/4" variant="h6" gutterBottom>
+              {HomePageText.sections["Visualization"]}
+            </Typography>
           </div>
+
+          <Spacer height="5em"/>
+
+
         </div>
         
         
