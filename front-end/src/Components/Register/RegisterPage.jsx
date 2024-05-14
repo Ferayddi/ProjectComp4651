@@ -4,8 +4,8 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import{useState} from "react";
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import Copyright from '../CopyRight/CopyRight.jsx'
 import {register} from "../../Services/authService.js";
+import Footer from '../General/components/Footer.jsx';
 import {useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
@@ -194,7 +194,7 @@ const RegisterPage = () => {
                             )}
                         </Box>
                     </Box>
-                    <Copyright sx={{ mt: 5 }} />
+                    <Footer sx={{ mt: 5 }} valueOf={true}/>
                 </Container>
             )
             }

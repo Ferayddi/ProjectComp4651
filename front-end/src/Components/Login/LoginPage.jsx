@@ -5,7 +5,7 @@ import {useState} from "react";
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import {login} from "../../Services/authService.js";
-import Copyright from "../CopyRight/CopyRight.jsx";
+import Footer from '../General/components/Footer.jsx';
 import * as Yup from 'yup';
 
 const LoginPage = () => {
@@ -140,7 +140,7 @@ const LoginPage = () => {
                           )}
                       </Box>
                   </Box>
-                  <Copyright sx={{ mt: 5 }} />
+                  <Footer sx={{ mt: 5 }} valueOf={true}/>
               </Container>
           )
           }

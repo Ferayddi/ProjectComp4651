@@ -3,13 +3,13 @@ nav {
     background: #0a0a0a;
     color:#fff;
     padding: 4px 0;
-    /* position: fixed; */
+     /*position: fixed;*/
     top: 0;
     left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 10;
+    z-index: -1;
 }
 
 .logo{
@@ -22,11 +22,6 @@ nav ul li{
     list-style: none;
     margin: 5px 20px;
     font-size: 18px;
-}
-
-.dark-nav {
-    background: #000000;
-    transition: 0.5s;
 }
 
 .menu-icon {
@@ -43,19 +38,18 @@ nav ul li{
         margin: 10px 15px;
         font-size: 16px;
     }
-    nav{
-        padding: 15px 20px 15px 0;
-    }
     nav ul {
         position: fixed;
         top: 0;
         right: -200px;
         bottom: 0;
         background: #000000;
-        z-index: -1;
         width: 200px;
         padding-top: 70px;
         transition: 0.5s;
+    }
+    nav img{
+        z-index: 10;
     }
     nav ul li {
         display: block;

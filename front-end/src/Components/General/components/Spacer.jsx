@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const Spacer = ({ height, width }) => {
   // Inline styles to define the size of the spacer
