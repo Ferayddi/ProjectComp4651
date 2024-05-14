@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('./index');
-const CrawlingSet = require('./crawling_set');
+const User = require('./user');
 
 const Post = db.define('posts',{
     id: {
@@ -9,11 +9,11 @@ const Post = db.define('posts',{
         allowNull: false,
         primaryKey: true
     },
-    crawlingSetId: {
+    userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-            model: CrawlingSet,
+            model: User,
             key: 'id'
         }
     },
@@ -28,6 +28,6 @@ const Post = db.define('posts',{
     }
 });
 
-Post.belongsTo(CrawlingSet, { foreignKey: 'crawlingSetId' });
+Post.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = Post;
