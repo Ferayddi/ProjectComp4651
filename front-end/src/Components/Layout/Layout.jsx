@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <div className="w-full">
         <div className="w-full py-5 px-8 bg-black">
-            <nav className="flex flex-row text-xl w-full justify-content-end gap-8">
+            <nav className="flex flex-row text-xl w-full justify-start gap-8">
                 <Link className="text-white" to="/">
                     <Typography variant="h5" gutterBottom>
                         Home

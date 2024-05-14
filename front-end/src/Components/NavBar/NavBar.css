@@ -1,9 +1,9 @@
-nav{
+nav {
     width: 100%;
     background: #0a0a0a;
     color:#fff;
     padding: 4px 0;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     left: 0;
     display: flex;

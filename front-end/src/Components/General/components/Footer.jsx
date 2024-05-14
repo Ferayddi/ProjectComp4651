@@ -10,7 +10,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 const Footer = () => {
   return (
-    <div className="w-full bg-our-blue py-4">
+    <div className="w-full bg-our-blue py-12">
       <div className="flex flex-col w-full items-center gap-4">
         <div className=" flex flex-row gap-2 justify-center">
           <FacebookOutlinedIcon />
