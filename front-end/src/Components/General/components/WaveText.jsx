@@ -1,4 +1,4 @@
-import React from 'react';
+
 // import './WaveText.css'; // Make sure the CSS is imported
 
 const WaveText = ({ text }) => {

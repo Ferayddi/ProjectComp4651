@@ -7,7 +7,6 @@ import LoginPage from './Components/Login/LoginPage.jsx';
 import RegisterPage from './Components/Register/RegisterPage.jsx'
 import AppPage from './Components/AppPage/AppPage.jsx';
 import TeamPage from './Components/Team/TeamPage.jsx';
-import Nav from './Components/NavBar/NavBar.jsx'
 import useAuth from './Hook/isAuthenticated.jsx';
 import Layout from './Components/Layout/Layout.jsx';
 

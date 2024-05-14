@@ -1,5 +1,3 @@
-import React from 'react'
-import Typography from '@mui/material/Typography';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
