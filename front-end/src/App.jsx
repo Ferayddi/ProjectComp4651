@@ -17,21 +17,24 @@ function App() {
 
     return (
         <Router>
-            {/* {isAuthenticated && <Nav />} */}
-            
-
             <Routes>
-                {/* <Route path="/register" element={<RegisterPage/>}/> */}
-                {/* <Route path="/login"  element={isAuthenticated ? <Navigate to="/" /> : <LoginPage/>} /> */}
-                {/* <Route
-                    path="/"
-                    element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />}
-                /> */}
-                <Route path="/" element={<Layout />} >
-                    <Route path="/" element={<HomePage />} />
+                 <Route path="/register" element={<RegisterPage/>}/>
+                 {/*<Route path="/login"  element={<LoginPage/>} />*/}
+                 <Route path="/login"  element={isAuthenticated ? <Navigate to="/" /> : <LoginPage/>} />
+                 <Route path="/" element={<Layout />} >
+                     <Route path="/" element={<HomePage />} />
+                     <Route
+                         path="/app"
+                         element={isAuthenticated ? <AppPage /> : <Navigate to="/login" />}
+                     />
                     <Route path="/team" element={<TeamPage />} />
-                    <Route path="/app" element={<AppPage />} />
-                </Route>
+                    {/*<Route path="/app" element={<AppPage />} />*/}
+                 </Route>
+                {/*<Route path="/" element={<Layout />} >*/}
+                {/*    <Route path="/" element={<HomePage />} />*/}
+                {/*    <Route path="/team" element={<TeamPage />} />*/}
+                {/*    <Route path="/app" element={<AppPage />} />*/}
+                {/*</Route>*/}
             </Routes>
         </Router>
     );

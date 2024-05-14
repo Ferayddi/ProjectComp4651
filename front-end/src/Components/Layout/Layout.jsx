@@ -29,7 +29,7 @@ const Layout = () => {
             <Outlet />
         </main>
         
-        <Footer />
+        <Footer valueOf={false}/>
     </div>
   )
 }
