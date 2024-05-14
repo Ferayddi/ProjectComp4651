@@ -18,11 +18,17 @@ const Layout = () => {
                         App
                     </Typography>
                 </Link>
+                <Link className="text-white" to="/crawl">
+                    <Typography variant="h5" gutterBottom>
+                       Crawl
+                    </Typography>
+                </Link>
                 <Link className="text-white" to="/team">
                     <Typography variant="h5" gutterBottom>
                         Our team
                     </Typography>
                 </Link>
+                
             </nav>
         </div>
         <main className="">

@@ -10,6 +10,8 @@ import TeamPage from './Components/Team/TeamPage.jsx';
 import Nav from './Components/NavBar/NavBar.jsx'
 import useAuth from './Hook/isAuthenticated.jsx';
 import Layout from './Components/Layout/Layout.jsx';
+import CrawlPage from './Components/Crawl/CrawlPage.jsx';
+
 
 function App() {
     const isAuthenticated = useAuth();
@@ -31,6 +33,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/team" element={<TeamPage />} />
                     <Route path="/app" element={<AppPage />} />
+                    <Route path="/crawl" element={<CrawlPage />} />
                 </Route>
             </Routes>
         </Router>
