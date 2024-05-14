@@ -1,7 +1,7 @@
 import React from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Spacer from '../General/components/Spacer.jsx';
-import WaveText from '../General/components/WaveText';
+import WaveText from '../General/components/WaveText.jsx';
 import Wave from 'react-wavify'
 import {HomePageText} from '../General/constants/constants.js';
 
