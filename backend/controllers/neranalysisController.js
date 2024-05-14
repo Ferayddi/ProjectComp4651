@@ -10,3 +10,7 @@ const quickresult = async (req, res) => {
         return res.status(500).json({ status: 500, error: "Internal Server Error" });
     }
 };
+
+module.exports = {
+    quickresult
+};
