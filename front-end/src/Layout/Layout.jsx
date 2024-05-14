@@ -6,19 +6,19 @@ import Footer from '../General/components/Footer.jsx';
 const Layout = () => {
   return (
     <div className="w-full">
-        <div className="w-full py-5 px-8 bg-our-blue">
+        <div className="w-full py-5 px-8 bg-black">
             <nav className="flex flex-row text-xl w-full justify-content-end gap-8">
-                <Link className="text-black" to="/">
+                <Link className="text-white" to="/">
                     <Typography variant="h5" gutterBottom>
                         Home
                     </Typography>
                 </Link>
-                <Link className="text-black" to="/app">
+                <Link className="text-white" to="/app">
                     <Typography variant="h5" gutterBottom>
-                        App page
+                        App
                     </Typography>
                 </Link>
-                <Link className="text-black" to="/team">
+                <Link className="text-white" to="/team">
                     <Typography variant="h5" gutterBottom>
                         Our team
                     </Typography>

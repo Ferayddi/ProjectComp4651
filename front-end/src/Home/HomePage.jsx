@@ -26,23 +26,23 @@ const HomePage = () => {
             <Typography variant="h4" gutterBottom>
               Scroll down to learn more
             </Typography>
-            <p>About the features of our app</p>
+            <p>About the features of our dataset collection app</p>
             <ExpandMoreIcon />
           </div>
         </div>
 
         <Spacer height="5em" />
 
-        <div className="flex flex-col w-full relative z-0">
-          <Spacer height="5em" />
-          <Wave fill='#5e9ef1'
+        <div className="flex flex-col w-full relative z-0 overflow-visible">
+          <Spacer height="10em" />
+          <Wave fill='#5e9ef1' className="overflow-y-visible flex"
           paused={false}
           style={{ 
             position: 'absolute',   // Use 'fixed' to position it relative to the viewport
-            top: 0,              // Align the top edge with the top of the viewport
+            top: "10%",              // Align the top edge with the top of the viewport
             left: 0,             // Align the left edge with the left side of the viewport
             width: '100%',      // Set width to 100% of the viewport width width: '100vw'
-            height: '100%',
+            height: '90%',
             // height: '100vh',     // Set height to 100% of the viewport height
             display: 'flex',
             zIndex: -1           // Optional: use a negative z-index if it should go behind other content
@@ -54,6 +54,26 @@ const HomePage = () => {
             points: 3
           }}
           />
+          <Wave fill='#5e9ef1' className="opacity-35"
+          paused={false}
+          style={{ 
+            position: 'absolute',   // Use 'fixed' to position it relative to the viewport
+            top: "10%",              // Align the top edge with the top of the viewport
+            left: 0,             // Align the left edge with the left side of the viewport
+            width: '100%',      // Set width to 100% of the viewport width width: '100vw'
+            height: '90%',
+            // height: '100vh',     // Set height to 100% of the viewport height
+            display: 'flex',
+            zIndex: -1           // Optional: use a negative z-index if it should go behind other content
+          }}
+          options={{
+            height: 20,
+            amplitude: 30,  //20
+            speed: 0.40,   //0.15
+            points: 4
+          }}
+          />
+
           <div className="flex flex-row w-full justify-center gap-8">
             <CollectionsBookmarkTwoToneIcon fontSize="large" />
             <CalculateTwoToneIcon fontSize="large"/>
