@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './Layout/Layout.jsx';
 // Import the components you will route to
 import HomePage from './Home/HomePage.jsx';
-import LoginPage from './Login/LoginPage.jsx';
+import AppPage from './AppPage/AppPage.jsx';
+import TeamPage from './Team/TeamPage.jsx';
 
 
 function App() {
@@ -23,7 +24,10 @@ function App() {
             <Route path="/" element={<HomePage />} />
 
             {/* Route for the Login component */}
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/app" element={<AppPage />} />
+
+            {/* Route for the Team component */}
+            <Route path="/team" element={<TeamPage />} />
           </Route>
         </Routes>
       {/* </div> */}

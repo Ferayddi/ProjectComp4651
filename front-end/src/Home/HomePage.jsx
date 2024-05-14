@@ -14,9 +14,9 @@ import Typography from '@mui/material/Typography';
 
 const HomePage = () => {
   return (
-    <div className="w-full flex flex-col">
-        <Spacer height="5em" />
-        <div className=" flex flex-col justify-start px-5">
+    <div className="w-full flex flex-col z-10 bg-black">
+        <Spacer height="10em" />
+        <div className=" flex flex-col justify-start px-5 text-white">
           <Typography variant="h1" gutterBottom>
             Welcome to our Home Page
           </Typography>
@@ -33,7 +33,7 @@ const HomePage = () => {
 
         <Spacer height="5em" />
 
-        <div className="flex flex-col w-full relative ">
+        <div className="flex flex-col w-full relative z-0">
           <Spacer height="5em" />
           <Wave fill='#5e9ef1'
           paused={false}
@@ -41,7 +41,7 @@ const HomePage = () => {
             position: 'absolute',   // Use 'fixed' to position it relative to the viewport
             top: 0,              // Align the top edge with the top of the viewport
             left: 0,             // Align the left edge with the left side of the viewport
-            width: '100vw',      // Set width to 100% of the viewport width
+            width: '100%',      // Set width to 100% of the viewport width width: '100vw'
             height: '100%',
             // height: '100vh',     // Set height to 100% of the viewport height
             display: 'flex',
@@ -49,8 +49,8 @@ const HomePage = () => {
           }}
           options={{
             height: 20,
-            amplitude: 20,
-            speed: 0.15,
+            amplitude: 40,  //20
+            speed: 0.30,   //0.15
             points: 3
           }}
           />
@@ -63,24 +63,24 @@ const HomePage = () => {
           <Spacer />
 
           <div className="flex flex-col items-center">
-            <Typography variant="h2" gutterBottom>
+            <Typography  variant="h4" gutterBottom>
               Collect Data
             </Typography>
-            <Typography className="px-4 w-3/4" variant="h6" gutterBottom>
+            <Typography className="px-4 w-3/4 italic" variant="subtitle1" gutterBottom>
               {HomePageText.sections["Crawling"]}
             </Typography>
             <Spacer height="3em"/>
-            <Typography variant="h3" gutterBottom>
+            <Typography variant="h4" gutterBottom>
               Perform cluster analysis
             </Typography>
-            <Typography className="px-4 w-3/4" variant="h6" gutterBottom>
+            <Typography className="px-4 w-3/4" variant="subtitle1" gutterBottom>
               {HomePageText.sections["Analysis"]}
             </Typography>
             <Spacer height="3em"/>
             <Typography variant="h4" gutterBottom>
               Retrieve results
             </Typography>
-            <Typography className="px-4 w-3/4" variant="h6" gutterBottom>
+            <Typography className="px-4 w-3/4" variant="subtitle1" gutterBottom>
               {HomePageText.sections["Visualization"]}
             </Typography>
           </div>

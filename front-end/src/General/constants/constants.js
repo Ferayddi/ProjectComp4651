@@ -9,3 +9,23 @@ export const HomePageText = {
             data storytelling and unlock the full potential of your datasets with our powerful visualization features."
     }
 }
+
+
+export const TeamText = {
+    member1: {
+        name: "Frederic Michel Ortega",
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology"
+    },
+    member2: {
+        name: "Samuel Chau",
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology"
+    },
+    member3: {
+        name: "Bosco Leung",
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology"
+    },
+    member4: {
+        name: "Matt Choi",
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology"
+    }
+}
