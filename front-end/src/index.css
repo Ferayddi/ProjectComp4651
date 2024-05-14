@@ -38,6 +38,17 @@ h1 {
   line-height: 1.1;
 }
 
+.btn{
+  background: #FFF;
+  color: #212121;
+  padding: 14px 25px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -67,5 +78,11 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (max-width: 1110px) {
+  .btn{
+    padding: 12px 20px;
   }
 }
