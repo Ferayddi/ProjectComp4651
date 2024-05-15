@@ -30,7 +30,7 @@ function App() {
                      />
                     <Route path="/team" element={<TeamPage />} />
                     <Route path="/crawl" element={<CrawlPage />} />
-                    {/*<Route path="/app" element={<AppPage />} />*/}
+                    <Route path="/app" element={<AppPage />} />
                  </Route>
                 {/*<Route path="/" element={<Layout />} >*/}
                 {/*    <Route path="/" element={<HomePage />} />*/}

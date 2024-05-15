@@ -1,40 +1,37 @@
 import React from 'react'
 import {useState} from 'react'
 import { Button, FormGroup, Slider, TextField, Typography } from '@mui/material'
+import { crawlReddit } from '../../Services/crawlService'
 
 const RedditCrawlComponent = () => {
-    const [link, setLink] = useState('');
-    const [postCount, setPostCount] = useState(0);
-    const [name, setName] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [numPosts, setNumPosts] = useState(0);
+    const [datasetName, setDatasetName] = useState('');
 
-    const handleLinkChange = (event) => {
-        setLink(event.target.value);
+    const handleQueryChange = (event) => {
+        setSearchQuery(event.target.value);
     };
 
     const handleNameChange = (event) => {
-        setName(event.target.value);
+        setDatasetName(event.target.value);
     };
 
     const handleSliderChange = (event, newValue) => {
-        setPostCount(newValue);
+        setNumPosts(newValue);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const formData = { link, postCount };
+        const formData = { 
+            search_query : link, 
+            num_posts: numPosts,
+            dataset_name: datasetName
+
+         };
         console.log(formData);  // Log the form data to the console for debugging
 
         // You can use fetch or axios to send formData to your API
-        fetch('api/api', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+        crawlReddit(searchQuery, numPosts, datasetName)
     };
 
 
@@ -48,8 +45,8 @@ const RedditCrawlComponent = () => {
                 <TextField
                     label="Search Query"
                     variant="outlined"
-                    value={link}
-                    onChange={handleLinkChange}
+                    value={searchQuery}
+                    onChange={handleQueryChange}
                     fullWidth
                     margin="normal"
                     sx={{
@@ -67,7 +64,7 @@ const RedditCrawlComponent = () => {
                 <TextField
                     label="Name for data"
                     variant="outlined"
-                    value={name}
+                    value={datasetName}
                     onChange={handleNameChange}
                     fullWidth
                     margin="normal"
@@ -84,10 +81,10 @@ const RedditCrawlComponent = () => {
                     }}
                 />
                 <Typography gutterBottom>
-                    Post Count: {postCount}
+                    Post Count: {numPosts}
                 </Typography>
                 <Slider
-                    value={postCount}
+                    value={numPosts}
                     onChange={handleSliderChange}
                     step={1}
                     marks

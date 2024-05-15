@@ -29,12 +29,15 @@ db.sync().then(() => {
 const userRouters = require('./routes/users')
 const neranalysisRouter = require('./routes/neranalysis')
 const crawlRouter = require('./routes/crawl')
+const analysisRouter = require('./routes/analysis')
 const uploadRouters = require("./routes/upload");
+
 
 app.use(express.json());
 app.use('/users', userRouters)
 app.use('/neranalysis', neranalysisRouter)
 app.use('/crawl', crawlRouter)
+app.use('/analysis', analysisRouter)
 app.use("/upload", uploadRouters);
 
 app.get("/", (req, res) => {
