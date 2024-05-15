@@ -17,6 +17,8 @@ const http = require("http");
 const server = http.createServer(app);
 
 const db = require("./models/index");
+const User = require('./models/User');
+const DataSet = require('./models/DataSet');
 server.listen(process.env.PORT || 8080, () => {
   console.log(`server is listening on ${process.env.PORT || 8080}`);
 });
@@ -29,13 +31,13 @@ db.sync().then(() => {
 const userRouters = require('./routes/users')
 const neranalysisRouter = require('./routes/neranalysis')
 const crawlRouter = require('./routes/crawl')
-const uploadRouters = require("./routes/upload");
+const datasetRouter = require('./routes/dataset')
 
 app.use(express.json());
 app.use('/users', userRouters)
 app.use('/neranalysis', neranalysisRouter)
 app.use('/crawl', crawlRouter)
-app.use("/upload", uploadRouters);
+app.use('/dataset', datasetRouter)
 
 app.get("/", (req, res) => {
   res.send("Server online");

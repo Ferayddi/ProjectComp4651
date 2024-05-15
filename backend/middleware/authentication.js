@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const db = require('../models/index')
 const User = require('../models/user');
 
 
@@ -50,7 +49,7 @@ const verifyToken  = async (req, res, next) => {
             return res.status(401).json({code: 401, error: "Token expired"})
         }
 
-        res.username = verify.username
+        res.userName = verify.userName
 
         next()
     } catch (error) {
