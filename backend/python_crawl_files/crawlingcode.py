@@ -318,11 +318,11 @@ def crawl_google_search(query,num_links, bool_print):
   links = parse_links(html_content_of_search)
   page_contents = fetch_content_of_links(links, num_links)
   if bool_print == 1:
-    print("Pages found by search and will be crawled:")
-    for link in links:
-        print(link)
+    # print("Pages found by search and will be crawled:")
+    # for link in links:
+    #     print(link)
 
-    print("Crawled text:")
+    # print("Crawled text:")
     print(page_contents)
   return page_contents
 
