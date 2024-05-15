@@ -184,7 +184,7 @@ async def searchRedditPostsByQuery(query, num_posts):
             content_text = ""
             async for post in search_posts:
                 content_text += post.selftext
-                print(post.selftext)
+                #print(post.selftext)
             return content_text
 
     except asyncprawcore.exceptions.ResponseException:
@@ -199,7 +199,7 @@ async def crawlReddit(query, num_posts, bool_print):
     print(content)
   return content
 
-# result = await crawlReddit("Beagles", 10, 1)
+#result = await crawlReddit("Beagles", 10, 1)
 
 """# Crawling using Google search"""
 

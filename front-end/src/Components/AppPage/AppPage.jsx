@@ -4,18 +4,25 @@ import Wave from 'react-wavify'
 import QuickTry from "../NERanalysis/QuickTry.jsx";
 import TypeOfAnalysis from "../TypeOfAnalysis/TypeOfAnalysis.jsx";
 import {Typography} from "@mui/material";
+import UploadButton from "../General/components/UploadButton.jsx";
+
 const AppPage = () => {
   return (
     <div className="w-full flex flex-col bg-white  min-h-dvh relative">
             <TypeOfAnalysis/>
             <QuickTry/>
             <Spacer height={"6em"} />
-            <Typography variant="h5" className="text-center">
-              Analyze your datasets
-            </Typography>
-
-            <div className="flex flex-row w-full justify-center">
-              <div className="flex w-3/4">
+            <div className="flex w-full flex-row justify-center px-8">
+              <Typography variant="h5" className="text-center grow">
+                Analyze your datasets
+              </Typography>
+            </div>
+            <div className="flex flex-col w-full justify-center items-center">
+              
+              <div className="flex flex-col w-3/4">
+                <div className="flex flex-row w-full justify-end">
+                  <UploadButton />
+                </div>
                 <AnalysisComponent />
               </div>
             </div>
