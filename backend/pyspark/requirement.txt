@@ -1,0 +1,5 @@
+spacy
+pyspark
+nltk
+torch
+transformers
