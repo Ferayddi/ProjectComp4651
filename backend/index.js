@@ -31,12 +31,15 @@ db.sync().then(() => {
 const userRouters = require('./routes/users')
 const neranalysisRouter = require('./routes/neranalysis')
 const crawlRouter = require('./routes/crawl')
+const analysisRouter = require('./routes/analysis')
 const datasetRouter = require('./routes/dataset')
+
 
 app.use(express.json());
 app.use('/users', userRouters)
 app.use('/neranalysis', neranalysisRouter)
 app.use('/crawl', crawlRouter)
+app.use('/analysis', analysisRouter)
 app.use('/dataset', datasetRouter)
 
 app.get("/", (req, res) => {

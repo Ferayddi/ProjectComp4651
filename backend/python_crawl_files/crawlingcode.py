@@ -134,37 +134,61 @@ def clean_reddit_text(text):
 
 #   return content_text
 
-#ASYNCHRONOUS Retrieve Posts content by query
+# #ASYNCHRONOUS Retrieve Posts content by query
+# async def searchRedditPostsByQuery(query, num_posts):
+#     try:
+#       reddit = asyncpraw.Reddit( #reddit =
+#           client_id= "7mKGH9zDIjWgHv55IGVbIw",
+#           client_secret = "twwgm3--p52-Qg2JQsVLsBbF7G-mvQ",
+#           user_agent="USERAGENT",
+#           # username="USERNAME",
+#           # password="PASSWORD",
+#       )
+
+#       # Check if the Reddit instance is read-only
+#       read_only =  reddit.read_only
+#       print(read_only)
+
+#       # Access the subreddit
+#       subreddit =  await reddit.subreddit("all")
+
+#     except asyncprawcore.exceptions.ResponseException:
+#         print("Invalid credentials. Please check your Reddit app's settings.")
+
+#     search_posts = subreddit.search(query, limit=num_posts)
+#     # print(search_posts)
+#     content_text = ""
+#     async for post in search_posts:
+
+#       content_text += post.selftext
+#       print(post.selftext)
+#       # content_text += "\n"
+#     # print(content_text)
+#     return content_text
+
 async def searchRedditPostsByQuery(query, num_posts):
     try:
-      reddit = asyncpraw.Reddit(
-          client_id= "7mKGH9zDIjWgHv55IGVbIw",
-          client_secret = "twwgm3--p52-Qg2JQsVLsBbF7G-mvQ",
-          user_agent="USERAGENT",
-          # username="USERNAME",
-          # password="PASSWORD",
-      )
+        async with asyncpraw.Reddit(
+            client_id= "7mKGH9zDIjWgHv55IGVbIw",
+            client_secret = "twwgm3--p52-Qg2JQsVLsBbF7G-mvQ",
+            user_agent="USERAGENT",
+        ) as reddit:
+            # Check if the Reddit instance is read-only
+            read_only = reddit.read_only
+            # print(read_only)
 
-      # Check if the Reddit instance is read-only
-      read_only =  reddit.read_only
-      print(read_only)
+            # Access the subreddit
+            subreddit = await reddit.subreddit("all")
 
-      # Access the subreddit
-      subreddit =  await reddit.subreddit("all")
+            search_posts = subreddit.search(query, limit=num_posts)
+            content_text = ""
+            async for post in search_posts:
+                content_text += post.selftext
+                print(post.selftext)
+            return content_text
 
     except asyncprawcore.exceptions.ResponseException:
         print("Invalid credentials. Please check your Reddit app's settings.")
-
-    search_posts = subreddit.search(query, limit=num_posts)
-    # print(search_posts)
-    content_text = ""
-    async for post in search_posts:
-
-      content_text += post.selftext
-      print(post.selftext)
-      # content_text += "\n"
-    # print(content_text)
-    return content_text
 
 #BOTH SYNCHRONOUS AND ASYNCHRONOUS
 async def crawlReddit(query, num_posts, bool_print):
@@ -302,7 +326,7 @@ def crawl_google_search(query,num_links, bool_print):
     print(page_contents)
   return page_contents
 
-crawl_google_search("Beagles", 10, 1)
+#  crawl_google_search("Beagles", 10, 1)
 
 # crawl_google_search("Eagles", 10, 1)
 
