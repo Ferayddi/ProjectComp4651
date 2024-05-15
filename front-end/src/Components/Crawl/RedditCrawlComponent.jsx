@@ -23,7 +23,7 @@ const RedditCrawlComponent = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = { 
-            search_query : link, 
+            search_query : searchQuery, 
             num_posts: numPosts,
             dataset_name: datasetName
 
@@ -50,7 +50,7 @@ const RedditCrawlComponent = () => {
                     fullWidth
                     margin="normal"
                     sx={{
-                        input: { color: 'white' }, // Changes the text color to white
+                        input: { color: 'black' }, // Changes the text color to white
                         label: { color: 'black' }, // Changes the label color to white
                         '& label.Mui-focused': { color: 'black' }, // Maintains label color when focused
                         '& .MuiOutlinedInput-root': {
@@ -69,7 +69,7 @@ const RedditCrawlComponent = () => {
                     fullWidth
                     margin="normal"
                     sx={{
-                        input: { color: 'white' }, // Changes the text color to white
+                        input: { color: 'black' }, // Changes the text color to white
                         label: { color: 'black' }, // Changes the label color to white
                         '& label.Mui-focused': { color: 'black' }, // Maintains label color when focused
                         '& .MuiOutlinedInput-root': {

@@ -1,17 +1,26 @@
-import React,{ useState } from 'react'
 import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
-
-const data = [
-    { name: 'Dataset 1', dateCreated: '2023-01-01', dataSize: '15MB' },
-    { name: 'Dataset 2', dateCreated: '2023-02-15', dataSize: '22MB' },
-    { name: 'Dataset 3', dateCreated: '2023-03-10', dataSize: '8MB' },
-  ];
+import {useEffect, useState} from "react";
+import {retrieveDatasets} from "../../Services/datasetService.js";
+import UploadButton from "../General/components/UploadButton.jsx";
 
 
 const AnalysisComponent = () => {
     const [selectedRow, setSelectedRow] = useState(null);
     const [analysisType, setAnalysisType] = useState('');
+    const [dataList, setDataList] = useState(null);
+    const fetchData = async () => {
+        try {
+            const result = await retrieveDatasets();
+            console.log(result.datasets);
+            setDataList(result.datasets);
 
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+    useEffect(() => {
+       fetchData()
+    }, []);
     const handleRowClick = (index) => {
         setSelectedRow(index);
     };
@@ -22,7 +31,7 @@ const AnalysisComponent = () => {
 
     const handleSubmit = () => {
         if (selectedRow !== null && analysisType) {
-        const selectedData = data[selectedRow];
+        // const selectedData = data[selectedRow];
         // console.log('Starting analysis for:', selectedData);
         // console.log('Analysis type:', analysisType);
         // Perform the analysis here, e.g., send data to your API
@@ -33,32 +42,43 @@ const AnalysisComponent = () => {
 
     return (
         <div className="py-4 px-8 w-full">
-            <Typography variant="h4" gutterBottom className="text-center text-white">
-                Select one of your dataset
+            <Typography variant="h4" gutterBottom className="text-center text-black">
+                Select one of your datasets
             </Typography>
+            <div className="flex flex-row w-full justify-end">
+                <UploadButton success_function={fetchData}/>
+            </div>
             <TableContainer component={Paper}>
                 <Table>
-                <TableHead>
-                    <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Date Created</TableCell>
-                    <TableCell>Data Size</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data.map((row, index) => (
-                    <TableRow
-                        key={index}
-                        onClick={() => handleRowClick(index)}
-                        selected={selectedRow === index}
-                        style={{ cursor: 'pointer' }}
-                    >
-                        <TableCell>{row.name}</TableCell>
-                        <TableCell>{row.dateCreated}</TableCell>
-                        <TableCell>{row.dataSize}</TableCell>
-                    </TableRow>
-                    ))}
-                </TableBody>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Date Created</TableCell>
+                            <TableCell>Data Size</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {dataList ? (
+                            dataList.map((row, index) => (
+                                <TableRow
+                                    key={index}
+                                    onClick={() => handleRowClick(index)}
+                                    selected={selectedRow === index}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <TableCell>{row.datasetName}</TableCell>
+                                    <TableCell>{row.createdAt}</TableCell>
+                                    <TableCell>{row.datasetSize} {row.datasetSizeUnit}</TableCell>
+                                </TableRow>
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={3} align="center">
+                                    Empty Table
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </TableBody>
                 </Table>
             </TableContainer>
             

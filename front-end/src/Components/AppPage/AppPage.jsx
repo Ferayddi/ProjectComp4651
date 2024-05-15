@@ -20,9 +20,7 @@ const AppPage = () => {
             <div className="flex flex-col w-full justify-center items-center">
               
               <div className="flex flex-col w-3/4">
-                <div className="flex flex-row w-full justify-end">
-                  <UploadButton />
-                </div>
+
                 <AnalysisComponent />
               </div>
             </div>
