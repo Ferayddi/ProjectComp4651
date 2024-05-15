@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/system';
+import { uploadDataset } from '../../../Services/datasetService';
 
 const Input = styled('input')({
   display: 'none',
@@ -21,10 +22,9 @@ const UploadButton = () => {
   const handleUpload = () => {
     if (file) {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('dataset', file);
       
-      // Handle formData, e.g., send it to the server
-      console.log(formData.get('file'));
+      uploadDataset(formData)
     } else {
       alert('No file selected');
     }
