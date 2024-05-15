@@ -1,15 +1,14 @@
+import axios from "axios";
+import secureLocalStorage from "react-secure-storage";
+
 export const uploadDataset = (formData) => {
     const token = secureLocalStorage.getItem('accessToken');
 
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
         },
-    };
-
-    const requestBody = {
-
     };
 
     return axios

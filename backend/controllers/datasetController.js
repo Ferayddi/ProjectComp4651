@@ -2,6 +2,7 @@ const DataSet = require('../models/dataset');
 const User = require('../models/user');
 
 const fs = require('fs')
+const Sequelize = require("sequelize");
 const uploadDataset = async (req, res) => {
     try {
         const user = await User.findOne({
@@ -32,13 +33,57 @@ const uploadDataset = async (req, res) => {
 
         return res.status(200).json({ status: 200});
     } catch (error) {
-        console.log(error)
         fs.unlinkSync(req.file.path);
         if (error.code) return res.status(error.code).json({status: error.code, error: error.error})
         return res.status(500).json({status: 500, error: "Internal Server Error"})
     }
 };
 
+const getListOfDataSets = async (req, res) => {
+    try {
+        const user = await User.findOne({
+            where: {
+                userName: res.userName,
+            },
+        });
+
+        const datasets = await DataSet.findAll({
+            where: {
+                userId: user.id,
+            },
+            attributes: [
+                'datasetName',
+                'datasetSize',
+                'datasetSizeUnit',
+                'datasetUrl',
+                'createdAt',
+            ],
+        });
+
+        const formattedDatasets = datasets.map((dataset) => {
+            const createdAt = new Date(dataset.createdAt);
+            const year = createdAt.getFullYear();
+            const month = String(createdAt.getMonth() + 1).padStart(2, '0');
+            const day = String(createdAt.getDate()).padStart(2, '0');
+            const formattedCreatedAt = `${year}-${month}-${day}`;
+
+            return {
+                ...dataset.dataValues,
+                createdAt: formattedCreatedAt,
+            };
+        });
+
+        return res.status(200).json({ status: 200, datasets: formattedDatasets });
+    } catch (error) {
+        console.log(error);
+        if (error.code) {
+            return res.status(error.code).json({ status: error.code, error: error.error });
+        }
+        return res.status(500).json({ status: 500, error: "Internal Server Error" });
+    }
+};
+
 module.exports = {
-    uploadDataset
+    uploadDataset,
+    getListOfDataSets
 };

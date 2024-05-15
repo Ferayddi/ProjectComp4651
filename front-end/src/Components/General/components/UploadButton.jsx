@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/system';
 import { uploadDataset } from '../../../Services/datasetService';
+import secureLocalStorage from 'react-secure-storage';
+import {useState} from "react";
 
 const Input = styled('input')({
   display: 'none',
@@ -9,6 +10,7 @@ const Input = styled('input')({
 
 const UploadButton = () => {
   const [file, setFile] = useState(null);
+  const [isUploadSuccess, setIsUploadSuccess] = useState(false);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -22,9 +24,19 @@ const UploadButton = () => {
   const handleUpload = () => {
     if (file) {
       const formData = new FormData();
+      formData.append('userName', secureLocalStorage.getItem('userName'))
       formData.append('dataset', file);
       
       uploadDataset(formData)
+          .then((response) => {
+              if(response.status === 200) {
+                  setFile(null);
+                  setIsUploadSuccess(true);
+                  setTimeout(() => {
+                      setIsUploadSuccess(false);
+                  }, 2000);
+              }
+          })
     } else {
       alert('No file selected');
     }
@@ -60,6 +72,7 @@ const UploadButton = () => {
             </Button>}
         </div>
         {file && <p>{file.name}</p>}
+        {isUploadSuccess && <p>file uploaded successfully</p>}
     </div>
     
   );
