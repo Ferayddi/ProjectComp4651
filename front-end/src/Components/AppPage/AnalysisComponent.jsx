@@ -23,8 +23,8 @@ const AnalysisComponent = () => {
     const handleSubmit = () => {
         if (selectedRow !== null && analysisType) {
         const selectedData = data[selectedRow];
-        console.log('Starting analysis for:', selectedData);
-        console.log('Analysis type:', analysisType);
+        // console.log('Starting analysis for:', selectedData);
+        // console.log('Analysis type:', analysisType);
         // Perform the analysis here, e.g., send data to your API
         } else {
         console.log('Please select a row and an analysis type.');

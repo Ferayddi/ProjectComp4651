@@ -184,7 +184,7 @@ async def searchRedditPostsByQuery(query, num_posts):
             content_text = ""
             async for post in search_posts:
                 content_text += post.selftext
-                print(post.selftext)
+                #print(post.selftext)
             return content_text
 
     except asyncprawcore.exceptions.ResponseException:
@@ -199,7 +199,7 @@ async def crawlReddit(query, num_posts, bool_print):
     print(content)
   return content
 
-# result = await crawlReddit("Beagles", 10, 1)
+#result = await crawlReddit("Beagles", 10, 1)
 
 """# Crawling using Google search"""
 
@@ -313,20 +313,23 @@ def fetch_content_of_links(links, num_links):
     return cleaned_page_contents
 
 def crawl_google_search(query,num_links, bool_print):
-  html_content_of_search = fetch_pages(query)
-  # print(html_content)
-  links = parse_links(html_content_of_search)
-  page_contents = fetch_content_of_links(links, num_links)
-  if bool_print == 1:
-    print("Pages found by search and will be crawled:")
-    for link in links:
-        print(link)
+  try:
+    html_content_of_search = fetch_pages(query)
+    # print(html_content)
+    links = parse_links(html_content_of_search)
+    page_contents = fetch_content_of_links(links, num_links)
+    if bool_print == 1:
+      # print("Pages found by search and will be crawled:")
+      # for link in links:
+      #     print(link)
 
-    print("Crawled text:")
-    print(page_contents)
-  return page_contents
+      # print("Crawled text:")
+      print(page_contents)
+    return page_contents
+  except Exception as e:
+    print(f"Error occured {e}")
 
-#  crawl_google_search("Beagles", 10, 1)
+crawl_google_search("Beagles", 10, 1)
 
 # crawl_google_search("Eagles", 10, 1)
 

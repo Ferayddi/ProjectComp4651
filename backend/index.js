@@ -17,8 +17,8 @@ const http = require("http");
 const server = http.createServer(app);
 
 const db = require("./models/index");
-const User = require('./models/User');
-const DataSet = require('./models/DataSet');
+const User = require('./models/user');
+const DataSet = require('./models/dataset');
 server.listen(process.env.PORT || 8080, () => {
   console.log(`server is listening on ${process.env.PORT || 8080}`);
 });
