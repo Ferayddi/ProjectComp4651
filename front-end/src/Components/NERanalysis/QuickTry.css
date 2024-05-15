@@ -1,0 +1,48 @@
+.NERAnalysis {
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 72%;
+}
+
+.NERAnalysis-right{
+    width: 100%;
+}
+
+.NERAnalysis h3{
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+    color: #212EA0;
+}
+
+.NERAnalysis p {
+    text-align: justify;
+    font-size: 18px;
+    color: #676767;
+    margin-bottom: 15px;
+}
+
+/* ----- media query -----*/
+@media (max-width: 650px) {
+    .NERAnalysis{
+        flex-direction: column;
+        padding: 0 20px;
+        width: 80%;
+    }
+    .NERAnalysis-right{
+        flex-basis: 100%;
+        margin: 5px;
+        order: 1;
+    }
+    .NERAnalysis p {
+        font-size: 14px;
+    }
+    .NERAnalysis h2{
+        font-size: 20px;
+    }
+    .NERAnalysis h3{
+        font-size: 18px;
+    }
+}

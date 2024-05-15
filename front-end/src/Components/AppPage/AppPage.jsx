@@ -1,14 +1,14 @@
-import React from 'react'
-import { Typography } from '@mui/material'
 import Spacer from '../General/components/Spacer.jsx'
 import AnalysisComponent from './AnalysisComponent.jsx'
 import Wave from 'react-wavify'
-import NERAnalysis from "../NERanalysis/NERAnalysis.jsx";
+import QuickTry from "../NERanalysis/QuickTry.jsx";
+import TypeOfAnalysis from "../TypeOfAnalysis/TypeOfAnalysis.jsx";
+import {Typography} from "@mui/material";
 const AppPage = () => {
   return (
     <div className="w-full flex flex-col bg-white  min-h-dvh relative">
-            <Spacer height={"3em"} />
-            <NERAnalysis/>
+            <TypeOfAnalysis/>
+            <QuickTry/>
             <Spacer height={"6em"} />
             <Typography variant="h5" className="text-center">
               Analyze your datasets
