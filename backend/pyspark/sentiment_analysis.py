@@ -56,7 +56,7 @@ def main(filepath, savepath):
 
     # add the row with the quantiles to the DataFrame
     sentiment_score_stats = sentiment_score_stats.union(
-        spark.createDataFrame([("Q1", Q1), ("Median", median), ("Q3", Q3), ("IQR", Q3-Q1), ("Positive", float(num_positive)),  ("Negative", float(num_negative))], ["summary", "sentiment_score"])
+        spark.createDataFrame([("q1", Q1), ("median", median), ("q3", Q3), ("IQR", Q3-Q1), ("positiveCount", float(num_positive)),  ("negativeCount", float(num_negative))], ["summary", "sentiment_score"])
     )
 
     # Initialize an empty dictionary to store the data
@@ -64,7 +64,7 @@ def main(filepath, savepath):
 
     # Iterate over the rows of the DataFrame and populate the dictionary
     for row in sentiment_score_stats.collect():
-        json_data[row["summary"]] = float(row["sentiment_score"])
+        json_data[row["summary"]] = int(float(row["sentiment_score"])) if 'count' in row["summary"].lower() else float(row["sentiment_score"])
     
     with open(savepath, 'w') as f:
         json.dump(json_data, f)
