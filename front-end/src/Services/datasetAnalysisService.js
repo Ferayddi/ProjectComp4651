@@ -1,3 +1,5 @@
+import secureLocalStorage from "react-secure-storage";
+
 export const analyzeDataset = (datasetName, analysisType) => {
     const token = secureLocalStorage.getItem('accessToken');
 
