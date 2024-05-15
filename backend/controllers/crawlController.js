@@ -15,7 +15,14 @@ const crawlReddit = async (req, res) => {
     try {
         const { search_query, num_posts, dataset_name } = req.body;
 
-        const pythonProcess = spawn('python', ['../backend/python_crawl_files/crawlingcode.py', 'reddit_crawl', search_query, num_posts, 1]);
+        const relativePath = '../backend/python_crawl_files/crawlingcode.py';
+
+        // Resolve the relative path to an absolute path
+        const fullPath = path.resolve(__dirname, relativePath);
+
+        // Print the full path
+        // console.log('Full path:', fullPath);
+        const pythonProcess = spawn('python3', ['python_crawl_files/crawlingcode.py', 'reddit_crawl', search_query, num_posts, 1]);
 
         let pythonOutput = '';
 
@@ -33,10 +40,18 @@ const crawlReddit = async (req, res) => {
         pythonProcess.on('close', async (code) => {
             console.log(`Python script exited with code ${code}`);
 
-            const filePath = `uploads\\${res.userName}\\crawlReddit\\${dataset_name}.txt`;
-            const directoryPath = path.dirname(filePath);
-            fs.mkdirSync(directoryPath, { recursive: true });
-            fs.writeFileSync(filePath, pythonOutput);
+            // const filePath = `uploads\\${res.userName}\\crawlReddit\\${dataset_name}.txt`;
+            // const directoryPath = path.dirname(filePath);
+            // fs.mkdirSync(directoryPath, { recursive: true });
+            // fs.writeFileSync(filePath, pythonOutput);
+            const filePath = path.join('uploads', `${dataset_name}.txt`);
+
+            try {
+                fs.writeFileSync(filePath, pythonOutput);
+                console.log('File has been saved successfully.');
+            } catch (err) {
+                console.error(`Error writing file: ${err.message}`);
+            }
 
             let datasetSize = fs.statSync(filePath).size;
             let datasetSizeUnit = 'B';
@@ -79,7 +94,7 @@ const crawlGoogle = async (req, res) =>{
     try{
         const {search_query, num_links, dataset_name} = req.body;
 
-        const pythonProcess = spawn('python', ['../backend/python_crawl_files/crawlingcode.py', 'google_crawl', search_query, num_links, 1]);
+        const pythonProcess = spawn('python3', ['python_crawl_files/crawlingcode.py', 'google_crawl', search_query, num_links, 1]);
         
         let pythonOutput = '';
 
@@ -98,10 +113,18 @@ const crawlGoogle = async (req, res) =>{
         pythonProcess.on('close', async (code) => {
             console.log(`Python script exited with code ${code}`);
 
-            const filePath = `uploads\\${res.userName}\\crawlGoogle\\${dataset_name}.txt`;
-            const directoryPath = path.dirname(filePath);
-            fs.mkdirSync(directoryPath, {recursive: true});
-            fs.writeFileSync(filePath, pythonOutput);
+            // const filePath = `uploads\\${res.userName}\\crawlGoogle\\${dataset_name}.txt`;
+            // const directoryPath = path.dirname(filePath);
+            // fs.mkdirSync(directoryPath, {recursive: true});
+            // fs.writeFileSync(filePath, pythonOutput);
+            const filePath = path.join('uploads', `${dataset_name}.txt`);
+
+            try {
+                fs.writeFileSync(filePath, pythonOutput);
+                console.log('File has been saved successfully.');
+            } catch (err) {
+                console.error(`Error writing file: ${err.message}`);
+            }
 
             let datasetSize = fs.statSync(filePath).size;
             let datasetSizeUnit = 'B';
