@@ -29,8 +29,8 @@ function App() {
                          element={isAuthenticated ? <AppPage /> : <Navigate to="/login" />}
                      /> */}
                     <Route path="/team" element={<TeamPage />} />
-                     <Route path="/crawl" element={<CrawlPage />} />
-                    <Route path="/app" element={<AppPage />} />
+                    <Route path="/crawl" element={<CrawlPage />} />
+                    {/*<Route path="/app" element={<AppPage />} />*/}
                  </Route>
                 {/*<Route path="/" element={<Layout />} >*/}
                 {/*    <Route path="/" element={<HomePage />} />*/}
