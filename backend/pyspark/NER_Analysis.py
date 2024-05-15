@@ -1,30 +1,31 @@
 import spacy
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import udf, explode, split, collect_list, concat_ws, flatten, col, count
-from pyspark.sql.types import ArrayType, StringType, StructType, StructField, MapType, IntegerType
+from pyspark.sql.functions import udf, explode, collect_list, flatten, col, count
+from pyspark.sql.types import ArrayType, StringType, StructType, StructField
 from collections import defaultdict 
 import sys
+import json
+
+nlp = spacy.load("en_core_web_sm")
+labels = nlp.get_pipe("ner").labels
+    
+# Function to extract named entities from text using spaCy
+def extract_entities_spacy(text):
+    try:
+        doc = nlp(text)
+        entity_dict = defaultdict(list)
+        for ent in doc.ents:
+            entity_dict[ent.label_].append(ent.text)
+        return tuple(entity_dict.get(label, None) for label in labels)
+    except:
+        return tuple(None for _ in labels)
+
 
 def main(filepath, savepath):
-    # Load spaCy NER model
-    nlp = spacy.load("en_core_web_sm")
-    labels = nlp.get_pipe("ner").labels
-
     # Initialize Spark session
     spark = SparkSession.builder \
         .appName("NER_Analysis") \
         .getOrCreate()
-
-    # Function to extract named entities from text using spaCy
-    def extract_entities_spacy(text):
-        try:
-            doc = nlp(text)
-            entity_dict = defaultdict(list)
-            for ent in doc.ents:
-                entity_dict[ent.label_].append(ent.text)
-            return tuple(entity_dict.get(label, None) for label in labels)
-        except:
-            return tuple(None for _ in labels)
 
     # Define schema for UDF return type
     StructFields = []
@@ -61,10 +62,7 @@ def main(filepath, savepath):
         "entities.quantity",
         "entities.time",
         "entities.work_of_art"
-    )
-
-    # Show the expanded DataFrame
-    expanded_df.show(truncate=False)
+    ).cache()
 
     # List of columns to aggregate
     columns_to_aggregate = expanded_df.columns
@@ -73,7 +71,7 @@ def main(filepath, savepath):
     agg_exprs = [flatten(collect_list(col_name)).alias(f"{col_name}") for col_name in columns_to_aggregate]
 
     # Perform aggregation using agg function
-    aggregated_df = expanded_df.agg(*agg_exprs)
+    aggregated_df = expanded_df.agg(*agg_exprs).cache()
     
     final_json = {}
     for column in aggregated_df.columns:
@@ -85,18 +83,21 @@ def main(filepath, savepath):
         result_dict = dict(count_df.collect())
         # Convert dictionary to JSON
         final_json[column] = result_dict
+    
+    with open(savepath, 'w') as f:
+        json.dump(final_json, f)
         
-    rdd = spark.sparkContext.parallelize([final_json])
+    # rdd = spark.sparkContext.parallelize([final_json])
 
-    # Define schema for DataFrame
-    schema = StructType([
-        StructField(k, MapType(StringType(), IntegerType()), True) for k, v in final_json.items()
-    ])
+    # # Define schema for DataFrame
+    # schema = StructType([
+    #     StructField(k, MapType(StringType(), IntegerType()), True) for k, v in final_json.items()
+    # ])
 
-    # Create DataFrame
-    final_df = spark.createDataFrame(rdd, schema)
+    # # Create DataFrame
+    # final_df = spark.createDataFrame(rdd, schema)
 
-    final_df.write.json(savepath, mode="overwrite")
+    # final_df.write.json(savepath, mode="overwrite")
 
     # Stop Spark session
     spark.stop()
