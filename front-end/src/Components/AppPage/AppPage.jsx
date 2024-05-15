@@ -7,14 +7,19 @@ import NERAnalysis from "../NERanalysis/NERAnalysis.jsx";
 const AppPage = () => {
   return (
     <div className="w-full flex flex-col bg-white  min-h-dvh relative">
+            <Spacer height={"3em"} />
             <NERAnalysis/>
             <Spacer height={"6em"} />
+            <Typography variant="h5" className="text-center">
+              Analyze your datasets
+            </Typography>
+
             <div className="flex flex-row w-full justify-center">
               <div className="flex w-3/4">
-
                 <AnalysisComponent />
               </div>
             </div>
+            <Spacer height={"6em"} />
             <Wave fill='#5e9ef1' className="overflow-y-visible flex"
               paused={false}
               style={{ 
