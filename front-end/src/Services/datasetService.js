@@ -35,7 +35,6 @@ export const retrieveDatasets = () => {
         },
     };
 
-
     return axios
         .get(
             `${import.meta.env.VITE_BACKEND_SERVER_URL}/dataset`,
