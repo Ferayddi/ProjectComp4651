@@ -24,10 +24,10 @@ function App() {
                  <Route path="/login"  element={isAuthenticated ? <Navigate to="/" /> : <LoginPage/>} />
                  <Route path="/" element={<Layout />} >
                      <Route path="/" element={<HomePage />} />
-                     {/* <Route
+                     <Route
                          path="/app"
                          element={isAuthenticated ? <AppPage /> : <Navigate to="/login" />}
-                     /> */}
+                     />
                     <Route path="/team" element={<TeamPage />} />
                     <Route path="/crawl" element={<CrawlPage />} />
                     {/*<Route path="/app" element={<AppPage />} />*/}

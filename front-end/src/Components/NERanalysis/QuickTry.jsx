@@ -1,10 +1,9 @@
-import './NERAnalysis.css'
-import NER from '../../assets/NER.png'
+import './QuickTry.css'
 import {Button, TextField} from "@mui/material";
 import {useState} from "react";
 import {quickNERAnalysis} from "../../Services/NERAnalysis.js";
 
-const NERAnalysis = () => {
+const QuickTry = () => {
 
     const [value, setValue] = useState('Mark Zuckerberg is one of the founders of Facebook, a company from the United States.');
     const [charCount, setCharCount] = useState(value.length);
@@ -32,12 +31,6 @@ const NERAnalysis = () => {
 
     return (
         <div className="NERAnalysis">
-            <div className="NERAnalysis-left">
-                <h3>NERAnalysis</h3>
-                <img src={NER} alt="" className="NERAnalysis-img"></img>
-                <h2>Named Entity Recognition (NER)</h2>
-                <p>Named Entity Recognition (NER) is an NLP technique that identifies and categorizes named entities in text, such as names of people, organizations, and locations. It helps extract valuable information and improve context analysis in various applications. NER algorithms utilize machine learning to identify patterns and extract entities from unstructured text data.</p>
-            </div>
             <div className="NERAnalysis-right">
                 <h3>Quick Try Here</h3>
                 <TextField
@@ -50,10 +43,12 @@ const NERAnalysis = () => {
                     fullWidth
                 />
                 <p>Character Count: {charCount}/200</p>
-                <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Button variant="contained" onClick={handleSubmit}>Try !</Button>
+                </div>
             </div>
         </div>
     )
 }
 
-export default NERAnalysis
+export default QuickTry
