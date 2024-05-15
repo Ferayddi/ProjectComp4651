@@ -1,7 +1,7 @@
 import axios from 'axios';
 import secureLocalStorage from 'react-secure-storage';
 
-export const crawlReddits = (searchType, numPosts, datasetName) => {
+export const crawlReddit = (searchQuery, numPosts, datasetName) => {
     const token = secureLocalStorage.getItem('accessToken');
 
     const config = {
@@ -12,9 +12,9 @@ export const crawlReddits = (searchType, numPosts, datasetName) => {
     };
 
     const requestBody = {
-        searchType: searchType,
-        numPosts: numPosts,
-        datasetName: datasetName
+        search_query: searchQuery,
+        num_posts: numPosts,
+        dataset_name: datasetName
     };
 
     return axios
@@ -31,7 +31,7 @@ export const crawlReddits = (searchType, numPosts, datasetName) => {
         });
 };
 
-export const crawlGoogle = (searchType, numLinks, datasetName) => {
+export const crawlGoogle = (searchQuery, numLinks, datasetName) => {
     const token = secureLocalStorage.getItem('accessToken');
 
     const config = {
@@ -42,9 +42,9 @@ export const crawlGoogle = (searchType, numLinks, datasetName) => {
     };
 
     const requestBody = {
-        searchType: searchType,
-        numPosts: numLinks,
-        datasetName: datasetName
+        search_query: searchQuery,
+        num_links: numLinks,
+        dataset_name: datasetName
     };
 
     return axios
