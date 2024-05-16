@@ -1,30 +1,44 @@
-import axios from 'axios';
-import secureLocalStorage from 'react-secure-storage';
+import axios from "axios";
+import secureLocalStorage from "react-secure-storage";
 
-export const quickNERAnalysis = (textString) => {
-    const token = secureLocalStorage.getItem('accessToken');
+function openAllUrls(urls) {
+  urls.forEach((url) => {
+    const fullUrl = `${import.meta.env.VITE_BACKEND_SERVER_URL}/${url}`;
+    window.open(fullUrl, "_blank");
+  });
+}
 
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-        },
-    };
+export const quickNERAnalysis = (textString, successFunction, failFunction) => {
+  const token = secureLocalStorage.getItem("accessToken");
 
-    const requestBody = {
-        textString: textString,
-    };
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  };
 
-    return axios
-        .post(
-            `${import.meta.env.VITE_BACKEND_SERVER_URL}/neranalysis/quickresult`,
-            requestBody,
-            config
-        )
-        .then((response) => {
-            return response.data;
-        })
-        .catch((error) => {
-            return error.response.data;
-        });
+  const requestBody = {
+    textString: textString,
+  };
+
+  return axios
+    .post(
+      `${import.meta.env.VITE_BACKEND_SERVER_URL}/neranalysis/quickresult`,
+      requestBody,
+      config
+    )
+    .then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        successFunction();
+        console.log(response.data.output_url);
+        openAllUrls(response.data.output_url);
+      } else {
+        failFunction();
+      }
+      return response.data;
+    })
+    .catch((error) => {
+      return error.response.data;
+    });
 };
