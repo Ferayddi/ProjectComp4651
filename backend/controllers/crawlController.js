@@ -22,7 +22,7 @@ const crawlReddit = async (req, res) => {
 
         // Print the full path
         // console.log('Full path:', fullPath);
-        const pythonProcess = spawn('python3', ['python_crawl_files/crawlingcode.py', 'reddit_crawl', search_query, num_posts, 1]);
+        const pythonProcess = spawn(process.env.PYTHON_CRAWL_RUN_CMD, ['python_crawl_files/crawlingcode.py', 'reddit_crawl', search_query, num_posts, 1]);
 
         let pythonOutput = '';
 
@@ -94,7 +94,7 @@ const crawlGoogle = async (req, res) =>{
     try{
         const {search_query, num_links, dataset_name} = req.body;
 
-        const pythonProcess = spawn('python3', ['python_crawl_files/crawlingcode.py', 'google_crawl', search_query, num_links, 1]);
+        const pythonProcess = spawn(process.env.PYTHON_CRAWL_RUN_CMD, ['python_crawl_files/crawlingcode.py', 'google_crawl', search_query, num_links, 1]);
         
         let pythonOutput = '';
 
