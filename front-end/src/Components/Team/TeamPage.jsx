@@ -93,7 +93,7 @@ const TeamPage = () => {
                 <img
                   src={member3} // Replace with your image URL
                   alt="Circular"
-                  style={{ borderRadius: '50%' }}
+                  style={{ borderRadius: '50%', objectFit: "cover"}}
                   className="w-48 h-56"
                 />
               </div>
