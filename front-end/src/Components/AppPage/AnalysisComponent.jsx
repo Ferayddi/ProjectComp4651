@@ -15,11 +15,14 @@ import {
   IconButton,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import {deleteDataset, retrieveDatasets} from "../../Services/datasetService.js";
+import {
+  deleteDataset,
+  retrieveDatasets,
+} from "../../Services/datasetService.js";
 import { analyzeDataset } from "../../Services/datasetAnalysisService.js";
 import UploadButton from "../General/components/UploadButton.jsx";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 import StatusIcon from "../General/components/StatusIcon";
 
 const AnalysisComponent = () => {
@@ -46,11 +49,10 @@ const AnalysisComponent = () => {
   const handleAnalysisTypeChange = (event) => {
     setAnalysisType(event.target.value);
   };
-  
-  const handleDeleteDataset =(id) => {
-      deleteDataset(id,  fetchData)
-      
-  }
+
+  const handleDeleteDataset = (id) => {
+    deleteDataset(id, fetchData);
+  };
 
   const successFunction = () => {
     setAnalysisState("success");
@@ -113,16 +115,6 @@ const AnalysisComponent = () => {
                     {row.datasetSize} {row.datasetSizeUnit}
                   </TableCell>
                   <TableCell>
-                    <IconButton onClick={() => window.open(`${import.meta.env.VITE_BACKEND_SERVER_URL}/${row.datasetUrl}`, '_blank')}>
-                        <VisibilityIcon />
-                    </IconButton>
-                  </TableCell>
-                  <TableCell>
-                    <IconButton onClick={() => handleDeleteDataset(row.id)}>
-                        <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                  <TableCell>
                     <IconButton
                       onClick={() =>
                         window.open(
@@ -134,6 +126,11 @@ const AnalysisComponent = () => {
                       }
                     >
                       <VisibilityIcon />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell>
+                    <IconButton onClick={() => handleDeleteDataset(row.id)}>
+                      <DeleteIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>
