@@ -14,11 +14,13 @@ export const HomePageText = {
 export const TeamText = {
     member1: {
         name: "Frederic Michel Ortega",
-        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology."
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology.",
+        picture_path: "src/assets/facePictures/frederic.jpeg"
     },
     member2: {
         name: "Samuel Chau",
-        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology."
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology.",
+        picture_path: "src/assets/facePictures/Samuel.jpeg"
     },
     member3: {
         name: "Bosco Leung",
@@ -26,6 +28,7 @@ export const TeamText = {
     },
     member4: {
         name: "Matt Choi",
-        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology."
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology.",
+        picture_path: "src/assets/facePictures/ChoiSheungYin_Picture.jpg"
     }
 }

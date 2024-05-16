@@ -2,11 +2,13 @@ import React from 'react'
 import {useState} from 'react'
 import { Button, FormGroup, Slider, TextField, Typography } from '@mui/material'
 import { crawlGoogle } from '../../Services/crawlService'
+import  StatusIcon  from '../General/components/StatusIcon'
 
 const GoogleCrawlComponent = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [numLinks, setNumLinks] = useState(0);
     const [datasetName, setDatasetName] = useState('');
+    const [crawlingState, setCrawlingState] = useState('');
 
     const handleDatasetNameChange = (event) => {
         setDatasetName(event.target.value);
@@ -20,12 +22,20 @@ const GoogleCrawlComponent = () => {
         setNumLinks(newValue);
     };
 
+    const successFunction = () => {
+        setCrawlingState("success")
+    }
+
+    const failFunction = () => {
+        setCrawlingState("failed")
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(formData);  // Log the form data to the console for debugging
-
+        //console.log(formData);  // Log the form data to the console for debugging
+        setCrawlingState("crawling")
         // You can use fetch or axios to send formData to your API
-        crawlGoogle(searchQuery, numLinks, datasetName)
+        crawlGoogle(searchQuery, numLinks, datasetName, successFunction, failFunction)
     };
 
 
@@ -44,7 +54,7 @@ const GoogleCrawlComponent = () => {
                     fullWidth
                     margin="normal"
                     sx={{
-                        input: { color: 'white' }, // Changes the text color to white
+                        input: { color: 'black' }, // Changes the text color to white
                         label: { color: 'black' }, // Changes the label color to white
                         '& label.Mui-focused': { color: 'black' }, // Maintains label color when focused
                         '& .MuiOutlinedInput-root': {
@@ -63,7 +73,7 @@ const GoogleCrawlComponent = () => {
                     fullWidth
                     margin="normal"
                     sx={{
-                        input: { color: 'white' }, // Changes the text color to white
+                        input: { color: 'black' }, // Changes the text color to white
                         label: { color: 'black' }, // Changes the label color to white
                         '& label.Mui-focused': { color: 'black' }, // Maintains label color when focused
                         '& .MuiOutlinedInput-root': {
@@ -115,6 +125,7 @@ const GoogleCrawlComponent = () => {
                 >
                     CRAWL
                 </Button>
+                < StatusIcon state={crawlingState} />
             </FormGroup>
         </form>
 

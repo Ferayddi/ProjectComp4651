@@ -2,11 +2,13 @@ import React from 'react'
 import {useState} from 'react'
 import { Button, FormGroup, Slider, TextField, Typography } from '@mui/material'
 import { crawlReddit } from '../../Services/crawlService'
+import  StatusIcon  from '../General/components/StatusIcon'
 
 const RedditCrawlComponent = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [numPosts, setNumPosts] = useState(0);
     const [datasetName, setDatasetName] = useState('');
+    const [crawlingState, setCrawlingState] = useState('');
 
     const handleQueryChange = (event) => {
         setSearchQuery(event.target.value);
@@ -19,6 +21,14 @@ const RedditCrawlComponent = () => {
     const handleSliderChange = (event, newValue) => {
         setNumPosts(newValue);
     };
+    
+    const successFunction = (response) => {
+        setCrawlingState("success")
+    }
+
+    const failFunction = (response) => {
+        setCrawlingState("failed")
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -28,10 +38,10 @@ const RedditCrawlComponent = () => {
             dataset_name: datasetName
 
          };
-        console.log(formData);  // Log the form data to the console for debugging
-
+        //console.log(formData);  // Log the form data to the console for debugging
+        setCrawlingState("crawling")
         // You can use fetch or axios to send formData to your API
-        crawlReddit(searchQuery, numPosts, datasetName)
+        crawlReddit(searchQuery, numPosts, datasetName, successFunction, failFunction)
     };
 
 
@@ -121,6 +131,7 @@ const RedditCrawlComponent = () => {
                 >
                     CRAWL
                 </Button>
+                < StatusIcon state={crawlingState} />
             </FormGroup>
         </form>
 

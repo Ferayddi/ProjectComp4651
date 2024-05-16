@@ -1,7 +1,7 @@
 import axios from 'axios';
 import secureLocalStorage from 'react-secure-storage';
 
-export const crawlReddit = (searchQuery, numPosts, datasetName) => {
+export const crawlReddit = (searchQuery, numPosts, datasetName, successFunction, failFunction) => {
     const token = secureLocalStorage.getItem('accessToken');
 
     const config = {
@@ -24,6 +24,11 @@ export const crawlReddit = (searchQuery, numPosts, datasetName) => {
             config
         )
         .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                successFunction();
+              } else {
+                failFunction();
+              }
             return response.data;
         })
         .catch((error) => {
@@ -31,7 +36,7 @@ export const crawlReddit = (searchQuery, numPosts, datasetName) => {
         });
 };
 
-export const crawlGoogle = (searchQuery, numLinks, datasetName) => {
+export const crawlGoogle = (searchQuery, numLinks, datasetName,successFunction, failFunction) => {
     const token = secureLocalStorage.getItem('accessToken');
 
     const config = {
@@ -54,6 +59,11 @@ export const crawlGoogle = (searchQuery, numLinks, datasetName) => {
             config
         )
         .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                successFunction();
+              } else {
+                failFunction();
+              }
             return response.data;
         })
         .catch((error) => {
