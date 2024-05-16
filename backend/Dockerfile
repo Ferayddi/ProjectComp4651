@@ -34,8 +34,12 @@ WORKDIR /user/src/app
 # Install Java
 RUN apt-get update && apt-get install -y openjdk-11-jre-headless && rm -rf /var/lib/apt/lists/*
 
+# Find Java installation path and set JAVA_HOME
+RUN export JAVA_HOME=$(update-alternatives --query java | grep 'Value:' | grep -o '/.*/jre')
+ENV JAVA_HOME $JAVA_HOME
+
 # Set JAVA_HOME environment variable
-ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
+# ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 
 # Copy Python environment
 COPY --from=python_base /usr/local /usr/local
@@ -50,3 +54,4 @@ RUN java -version
 EXPOSE 8080
 
 CMD ["npm", "start"]
+
