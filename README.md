@@ -17,22 +17,26 @@ Our deliverable is in the forms of docker images, which will leverage the power 
 
 ## Members information:
 
-student name: ORTEGA, Frederic Michel
-Student id: 20721351
-Email address : fmortega@connect.ust.hk
-Session: L2
+student name: ORTEGA, Frederic Michel  
+Student id: 20721351  
+Email address : fmortega@connect.ust.hk  
+Session: L2  
+Contribution:   
 
-student name: CHAU, Wang Yik
-Student id: 20762496
-Email address : wychauae@connect.ust.hk
-Session: L2
+student name: CHAU, Wang Yik  
+Student id: 20762496  
+Email address : wychauae@connect.ust.hk  
+Session: L2  
+Contribution:  
 
-student name: LEUNG, Ka Wa
-Student id:20770807
-Email address :
-Session:L1
+student name: LEUNG, Ka Wa  
+Student id:20770807  
+Email address: kwleungau@connect.ust.hk  
+Session: L1  
+Contribution: Spark Analysis functionalities  
 
-student name: Choi Sheung Yin
-Student id: 20767020
-Email address : sychoiaf@connect.ust.hk
-Session: L1
+student name: Choi Sheung Yin  
+Student id: 20767020  
+Email address : sychoiaf@connect.ust.hk  
+Session: L1  
+Contribution:  
