@@ -1,22 +1,23 @@
 import {
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Button,
+    Typography,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Paper,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    Button, IconButton,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { retrieveDatasets } from "../../Services/datasetService.js";
 import { analyzeDataset } from "../../Services/datasetAnalysisService.js";
 import UploadButton from "../General/components/UploadButton.jsx";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const AnalysisComponent = () => {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -71,6 +72,7 @@ const AnalysisComponent = () => {
               <TableCell>Name</TableCell>
               <TableCell>Date Created</TableCell>
               <TableCell>Data Size</TableCell>
+              <TableCell>View</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -87,6 +89,11 @@ const AnalysisComponent = () => {
                   <TableCell>
                     {row.datasetSize} {row.datasetSizeUnit}
                   </TableCell>
+                    <TableCell>
+                        <IconButton onClick={() => window.open(`${import.meta.env.VITE_BACKEND_SERVER_URL}/${row.datasetUrl}`, '_blank')}>
+                            <VisibilityIcon />
+                        </IconButton>
+                    </TableCell>
                 </TableRow>
               ))
             ) : (
