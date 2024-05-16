@@ -64,7 +64,10 @@ def main(filepath, savepath):
 
     # Iterate over the rows of the DataFrame and populate the dictionary
     for row in sentiment_score_stats.collect():
-        json_data[row["summary"]] = int(float(row["sentiment_score"])) if 'count' in row["summary"].lower() else float(row["sentiment_score"])
+        try:
+            json_data[row["summary"]] = int(float(row["sentiment_score"])) if 'count' in row["summary"].lower() else float(row["sentiment_score"])
+        except:
+            json_data[row["summary"]] = 0.0
     
     with open(savepath, 'w') as f:
         json.dump(json_data, f)
