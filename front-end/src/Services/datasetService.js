@@ -47,3 +47,28 @@ export const retrieveDatasets = () => {
             return error.response.data;
         });
 };
+
+export const deleteDataset = (id) => {
+    const token = secureLocalStorage.getItem('accessToken');
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        data: {
+            id: id,
+        },
+    };
+
+    return axios
+        .delete(
+            `${import.meta.env.VITE_BACKEND_SERVER_URL}/dataset`,
+            config
+        )
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            return error.response.data;
+        });
+};

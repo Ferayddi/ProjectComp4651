@@ -1,5 +1,6 @@
 const DataSet = require('../models/dataset');
 const User = require('../models/user');
+const path = require('path');
 
 const fs = require('fs')
 const Sequelize = require("sequelize");
@@ -52,6 +53,7 @@ const getListOfDataSets = async (req, res) => {
                 userId: user.id,
             },
             attributes: [
+                'id',
                 'datasetName',
                 'datasetSize',
                 'datasetSizeUnit',
@@ -75,7 +77,38 @@ const getListOfDataSets = async (req, res) => {
 
         return res.status(200).json({ status: 200, datasets: formattedDatasets });
     } catch (error) {
-        console.log(error);
+        if (error.code) {
+            return res.status(error.code).json({ status: error.code, error: error.error });
+        }
+        return res.status(500).json({ status: 500, error: "Internal Server Error" });
+    }
+};
+
+
+const deleteADataSet = async (req, res) => {
+    try {
+
+        const datasetId = req.body.id;
+
+        const dataset = await DataSet.findOne({ where: { id: datasetId } });
+        if (!dataset) {
+            return res.status(404).json({ status: 404, error: 'Dataset not found' });
+        }
+
+        const datasetUrl = dataset.datasetUrl;
+
+        await DataSet.destroy({ where: { id: datasetId } });
+
+        // Delete the file
+        if (datasetUrl) {
+            const uploadPath = path.join(__dirname, '../', datasetUrl);
+            fs.unlinkSync(uploadPath);
+        }
+
+
+        return res.status(200).json({ status: 200});
+    } catch (error) {
+        console.log(error)
         if (error.code) {
             return res.status(error.code).json({ status: error.code, error: error.error });
         }
@@ -85,5 +118,6 @@ const getListOfDataSets = async (req, res) => {
 
 module.exports = {
     uploadDataset,
-    getListOfDataSets
+    getListOfDataSets,
+    deleteADataSet,
 };

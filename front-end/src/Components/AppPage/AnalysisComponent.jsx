@@ -14,10 +14,11 @@ import {
     Button, IconButton,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { retrieveDatasets } from "../../Services/datasetService.js";
+import {deleteDataset, retrieveDatasets} from "../../Services/datasetService.js";
 import { analyzeDataset } from "../../Services/datasetAnalysisService.js";
 import UploadButton from "../General/components/UploadButton.jsx";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const AnalysisComponent = () => {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -42,6 +43,11 @@ const AnalysisComponent = () => {
   const handleAnalysisTypeChange = (event) => {
     setAnalysisType(event.target.value);
   };
+
+  const handleDeleteDataset =(id) => {
+      deleteDataset(id)
+      fetchData()
+  }
 
   const handleSubmit = () => {
     if (selectedRow !== null && analysisType) {
@@ -73,6 +79,7 @@ const AnalysisComponent = () => {
               <TableCell>Date Created</TableCell>
               <TableCell>Data Size</TableCell>
               <TableCell>View</TableCell>
+              <TableCell>Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -92,6 +99,11 @@ const AnalysisComponent = () => {
                     <TableCell>
                         <IconButton onClick={() => window.open(`${import.meta.env.VITE_BACKEND_SERVER_URL}/${row.datasetUrl}`, '_blank')}>
                             <VisibilityIcon />
+                        </IconButton>
+                    </TableCell>
+                    <TableCell>
+                        <IconButton onClick={() => handleDeleteDataset(row.id)}>
+                            <DeleteIcon />
                         </IconButton>
                     </TableCell>
                 </TableRow>
