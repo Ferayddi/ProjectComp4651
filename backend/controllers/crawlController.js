@@ -113,10 +113,6 @@ const crawlGoogle = async (req, res) =>{
         pythonProcess.on('close', async (code) => {
             console.log(`Python script exited with code ${code}`);
 
-            // const filePath = `uploads\\${res.userName}\\crawlGoogle\\${dataset_name}.txt`;
-            // const directoryPath = path.dirname(filePath);
-            // fs.mkdirSync(directoryPath, {recursive: true});
-            // fs.writeFileSync(filePath, pythonOutput);
             const filePath = path.join('uploads', `${dataset_name}.txt`);
 
             try {

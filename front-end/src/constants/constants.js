@@ -14,18 +14,18 @@ export const HomePageText = {
 export const TeamText = {
     member1: {
         name: "Frederic Michel Ortega",
-        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology"
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology."
     },
     member2: {
         name: "Samuel Chau",
-        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology"
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology."
     },
     member3: {
         name: "Bosco Leung",
-        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology"
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology."
     },
     member4: {
         name: "Matt Choi",
-        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology"
+        description: "Year 4 undergraduate student at the Hong Kong University of Science and Technology."
     }
 }
