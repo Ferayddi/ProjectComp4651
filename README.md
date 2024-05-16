@@ -21,7 +21,7 @@ student name: ORTEGA, Frederic Michel
 Student Id: 20721351  
 Email address : fmortega@connect.ust.hk  
 Session: L2  
-Contribution: 
+Contribution: Web development and writing Crawling functions 
 
 student name: CHAU, Wang Yik  
 Student Id: 20762496  
