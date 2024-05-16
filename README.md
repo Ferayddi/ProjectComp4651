@@ -15,3 +15,24 @@ Spark has been utilized in the analysis step of the application, and utilizes te
 
 Our deliverable is in the forms of docker images, which will leverage the power of cloud computing when deployed to Kubernetes, since scaling and management would be automated.
 
+## Members information: 
+student name: ORTEGA, Frederic Michel
+Student id: 20721351
+Email address : fmortega@connect.ust.hk
+Session: L2
+
+student name: 
+Student id:
+Email address :
+Session:
+
+student name: 
+Student id:
+Email address :
+Session:
+
+student name: 
+Student id:
+Email address :
+Session:
+
