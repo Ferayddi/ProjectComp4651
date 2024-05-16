@@ -1,17 +1,18 @@
 import {
-    Typography,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
-    Button, IconButton,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  IconButton,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import {deleteDataset, retrieveDatasets} from "../../Services/datasetService.js";
@@ -19,11 +20,13 @@ import { analyzeDataset } from "../../Services/datasetAnalysisService.js";
 import UploadButton from "../General/components/UploadButton.jsx";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from '@mui/icons-material/Delete';
+import StatusIcon from "../General/components/StatusIcon";
 
 const AnalysisComponent = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [analysisType, setAnalysisType] = useState("");
   const [dataList, setDataList] = useState(null);
+  const [analysisState, setAnalysisState] = useState("");
   const fetchData = async () => {
     try {
       const result = await retrieveDatasets();
@@ -43,12 +46,19 @@ const AnalysisComponent = () => {
   const handleAnalysisTypeChange = (event) => {
     setAnalysisType(event.target.value);
   };
-
+  
   const handleDeleteDataset =(id) => {
-      deleteDataset(id)
-      fetchData()
+    deleteDataset(id)
+    fetchData()
   }
 
+  const successFunction = () => {
+    setAnalysisState("success");
+  };
+
+  const failFunction = () => {
+    setAnalysisState("failed");
+  };
   const handleSubmit = () => {
     if (selectedRow !== null && analysisType) {
       console.log(dataList[selectedRow]);
@@ -57,7 +67,13 @@ const AnalysisComponent = () => {
       // console.log('Starting analysis for:', selectedData);
       // console.log('Analysis type:', analysisType);
       // Perform the analysis here, e.g., send data to your API
-      analyzeDataset(dataList[selectedRow], analysisType);
+      setAnalysisState("crawling");
+      analyzeDataset(
+        dataList[selectedRow],
+        analysisType,
+        successFunction,
+        failFunction
+      );
     } else {
       console.log("Please select a row and an analysis type.");
     }
@@ -96,16 +112,30 @@ const AnalysisComponent = () => {
                   <TableCell>
                     {row.datasetSize} {row.datasetSizeUnit}
                   </TableCell>
-                    <TableCell>
-                        <IconButton onClick={() => window.open(`${import.meta.env.VITE_BACKEND_SERVER_URL}/${row.datasetUrl}`, '_blank')}>
-                            <VisibilityIcon />
-                        </IconButton>
-                    </TableCell>
-                    <TableCell>
-                        <IconButton onClick={() => handleDeleteDataset(row.id)}>
-                            <DeleteIcon />
-                        </IconButton>
-                    </TableCell>
+                  <TableCell>
+                    <IconButton onClick={() => window.open(`${import.meta.env.VITE_BACKEND_SERVER_URL}/${row.datasetUrl}`, '_blank')}>
+                        <VisibilityIcon />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell>
+                    <IconButton onClick={() => handleDeleteDataset(row.id)}>
+                        <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell>
+                    <IconButton
+                      onClick={() =>
+                        window.open(
+                          `${import.meta.env.VITE_BACKEND_SERVER_URL}/${
+                            row.datasetUrl
+                          }`,
+                          "_blank"
+                        )
+                      }
+                    >
+                      <VisibilityIcon />
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
@@ -172,6 +202,7 @@ const AnalysisComponent = () => {
       >
         Start analysis
       </Button>
+      <StatusIcon state={analysisState} />
     </div>
   );
 };

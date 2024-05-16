@@ -1,14 +1,14 @@
 const { spawn } = require("child_process");
 const fs = require("fs").promises;
+const fs2 = require("fs");
 const path = require("path");
 async function ensureDirectoryExists(filePath) {
   try {
-    // Ensure the directory exists
     await fs.mkdir(path.dirname(filePath), { recursive: true });
     console.log(`Directory created or already exists for ${filePath}`);
   } catch (err) {
     console.error(`Error creating directory for ${filePath}: ${err}`);
-    throw err; // Re-throw the error for calling function to handle
+    throw err;
   }
 }
 
@@ -18,10 +18,8 @@ const datasetAnalysis = async (req, res) => {
     const datasetname = path.parse(dataset_name.datasetName).name;
     console.log(datasetname, " ", analysis_type);
     let scriptPath;
-    //const outputFilePath = `outputs/${req.userName}/${analysis_type}/${datasetname}.txt`;
     const outputFilePath = `outputs/${analysis_type}/${datasetname}.txt`;
     try {
-      // Ensure the output directory exists
       await ensureDirectoryExists(outputFilePath);
       await fs.writeFile(outputFilePath, "", "utf8");
       console.log(`Successfully create file ${outputFilePath}`);
@@ -56,31 +54,53 @@ const datasetAnalysis = async (req, res) => {
     pythonProcess.stderr.on("data", (data) => {
       console.error(`Error from Python script: ${data}`);
     });
-
-    pythonProcess.on("close", async (code) => {
+    pythonProcess.on("close", (code) => {
       console.log(`Python script exited with code ${code}`);
-      console.log("Analysis result file created.");
-      fs.access(outputFilePath, fs.constants.F_OK, (err) => {
+      console.log("Analysis result file created at:", outputFilePath);
+
+      // Check if the file exists
+      fs2.access(outputFilePath, fs2.constants.F_OK, (err) => {
         if (err) {
           console.error("Error accessing file:", err);
           return res.status(404).send("File not found");
         }
-        res.set({
-          "Content-Type": "text/plain",
-          "Content-Disposition": `attachment; filename="${path.basename(
-            outputFilePath
-          )}"`,
-        });
+        return res
+          .status(200)
+          .json({ status: 200, output_url: outputFilePath });
 
-        const fileStream = fs.createReadStream(filePath);
-        fileStream.pipe(res);
+        // const fileStream = fs2.createReadStream(outputFilePath);
+        // res.setHeader("Content-Type", "text/plain");
+        // res.setHeader(
+        //   "Content-Disposition",
+        //   `attachment; filename="${path.basename(outputFilePath)}"`
+        // );
+        // fileStream.on("open", (fd) => {
+        //   console.log(
+        //     `File Stream opened successfully with file descriptor: ${fd}`
+        //   );
+        // });
 
-        fileStream.on("error", (error) => {
-          console.error("Error reading file:", error);
-          res.status(500).send("Error reading file");
-        });
+        // fileStream.on("error", (error) => {
+        //   console.error("Error during file read:", error);
+        // });
+
+        // fileStream.on("data", (chunk) => {
+        //   console.log(`Received ${chunk.length} bytes of data.`);
+        // });
+
+        // fileStream.on("end", () => {
+        //   console.log("No more data to read.");
+        // });
+
+        // fileStream.on("close", () => {
+        //   console.log("Stream has been closed.");
+        // });
+        // //res.writeHead(200, head);
+
+        // fileStream.pipe(res).on("finish", () => {
+        //   console.log("File has been successfully sent.");
+        // });
       });
-      return res.status(200).json({ status: 200 });
     });
   } catch (error) {
     if (error.code)

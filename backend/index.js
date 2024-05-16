@@ -12,13 +12,14 @@ dotenv.config({ path: envFilePath });
 
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
+app.use("/outputs", express.static("outputs"));
 
 const http = require("http");
 const server = http.createServer(app);
 
 const db = require("./models/index");
-const User = require('./models/user');
-const DataSet = require('./models/dataset');
+const User = require("./models/user");
+const DataSet = require("./models/dataset");
 server.listen(process.env.PORT || 8080, () => {
   console.log(`server is listening on ${process.env.PORT || 8080}`);
 });
@@ -28,19 +29,18 @@ db.sync().then(() => {
   console.log("db has been synced");
 });
 
-const userRouters = require('./routes/users')
-const neranalysisRouter = require('./routes/neranalysis')
-const crawlRouter = require('./routes/crawl')
-const analysisRouter = require('./routes/analysis')
-const datasetRouter = require('./routes/dataset')
-
+const userRouters = require("./routes/users");
+const neranalysisRouter = require("./routes/neranalysis");
+const crawlRouter = require("./routes/crawl");
+const analysisRouter = require("./routes/analysis");
+const datasetRouter = require("./routes/dataset");
 
 app.use(express.json());
-app.use('/users', userRouters)
-app.use('/neranalysis', neranalysisRouter)
-app.use('/crawl', crawlRouter)
-app.use('/analysis', analysisRouter)
-app.use('/dataset', datasetRouter)
+app.use("/users", userRouters);
+app.use("/neranalysis", neranalysisRouter);
+app.use("/crawl", crawlRouter);
+app.use("/analysis", analysisRouter);
+app.use("/dataset", datasetRouter);
 
 app.get("/", (req, res) => {
   res.send("Server online");
