@@ -5,7 +5,7 @@ services:
   webpage:
     container_name: webpage_container
     build:
-      context: ./front-end
+      context: ./front-end/.
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -15,7 +15,7 @@ services:
   api:
     container_name: api_container
     build:
-      context: ./backend
+      context: ./backend/.
       dockerfile: Dockerfile
     ports:
       - "8080:8080"

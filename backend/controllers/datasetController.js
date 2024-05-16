@@ -34,6 +34,7 @@ const uploadDataset = async (req, res) => {
 
         return res.status(200).json({ status: 200});
     } catch (error) {
+        // console.log(error)
         fs.unlinkSync(req.file.path);
         if (error.code) return res.status(error.code).json({status: error.code, error: error.error})
         return res.status(500).json({status: 500, error: "Internal Server Error"})
@@ -77,6 +78,7 @@ const getListOfDataSets = async (req, res) => {
 
         return res.status(200).json({ status: 200, datasets: formattedDatasets });
     } catch (error) {
+        // console.log(error)
         if (error.code) {
             return res.status(error.code).json({ status: error.code, error: error.error });
         }

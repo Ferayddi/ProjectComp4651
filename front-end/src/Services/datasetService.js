@@ -48,7 +48,7 @@ export const retrieveDatasets = () => {
         });
 };
 
-export const deleteDataset = (id) => {
+export const deleteDataset = (id, success_function) => {
     const token = secureLocalStorage.getItem('accessToken');
 
     const config = {
@@ -66,6 +66,9 @@ export const deleteDataset = (id) => {
             config
         )
         .then((response) => {
+            if (response.status === 200) {
+                success_function();
+            }
             return response.data;
         })
         .catch((error) => {

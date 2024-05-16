@@ -48,8 +48,8 @@ const AnalysisComponent = () => {
   };
   
   const handleDeleteDataset =(id) => {
-    deleteDataset(id)
-    fetchData()
+      deleteDataset(id,  fetchData)
+      
   }
 
   const successFunction = () => {
