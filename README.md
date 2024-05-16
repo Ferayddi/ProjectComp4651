@@ -21,13 +21,13 @@ student name: ORTEGA, Frederic Michel
 Student Id: 20721351  
 Email address : fmortega@connect.ust.hk  
 Session: L2  
-Contribution: Web development and writing Crawling functions 
+Contribution: Web development, Backend routing and writing Crawling functions 
 
 student name: CHAU, Wang Yik  
 Student Id: 20762496  
 Email address : wychauae@connect.ust.hk  
 Session: L2  
-Contribution: Web Development and Writing Dockerfiles and docker-compose.yml
+Contribution: Web Development, Backend routing(main), Writing Dockerfiles and docker-compose.yml
 
 student name: LEUNG, Ka Wa  
 Student Id:20770807  
