@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  # Frontend Service
+  webpage:
+    container_name: webpage_container
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+  # Node.js API Service
+  api:
+    container_name: api_container
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  # PostgreSQL Service
+  db:
+    container_name: db_container
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: comp4651project
+      POSTGRES_USER: comp4651project
+      POSTGRES_DB: comp4651project
+    volumes:
+      - comp4651project:/data/db
+
+volumes:
+  comp4651project: {}
