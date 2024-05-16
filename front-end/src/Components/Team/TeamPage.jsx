@@ -1,8 +1,11 @@
-import React from 'react'
-import { Grid, Typography, Paper } from '@mui/material';
+import { Grid, Typography} from '@mui/material';
 import Spacer from '../General/components/Spacer.jsx';
 import {TeamText} from '../../constants/constants.js';
 import Wave from 'react-wavify'
+import member1 from '../../assets/FacePictures/frederic.jpeg'
+import member2 from '../../assets/FacePictures/Samuel.jpeg'
+import member3 from '../../assets/FacePictures/bosco.jpeg'
+import member4 from '../../assets/FacePictures/ChoiSheungYin_Picture.jpeg'
 
 const TeamPage = () => {
   return (
@@ -21,7 +24,7 @@ const TeamPage = () => {
             <Grid item xs={12} sm={4}>
               <div className="flex flex-row h-full items-center justify-center w-full">
                 <img
-                  src={TeamText.member1.picture_path} // Replace with your image URL
+                  src={member1} // Replace with your image URL
                   alt="Circular"
                   style={{ borderRadius: '50%' }} //width: '100%', height: 'auto', 
                   className="w-48 h-56"
@@ -59,7 +62,7 @@ const TeamPage = () => {
             <Grid item xs={12} sm={4}>
               <div className="flex flex-row h-full items-center justify-center w-full">
                 <img
-                  src={TeamText.member2.picture_path} // Replace with your image URL
+                  src={member2} // Replace with your image URL
                   alt="Circular"
                   style={{  borderRadius: '50%' }}
                   className="w-48 h-56"
@@ -88,7 +91,7 @@ const TeamPage = () => {
             <Grid item xs={12} sm={4}> 
               <div className="flex flex-row h-full items-center justify-center w-full">
                 <img
-                  src={TeamText.member3.picture_path} // Replace with your image URL
+                  src={member3} // Replace with your image URL
                   alt="Circular"
                   style={{ borderRadius: '50%' }}
                   className="w-48 h-56"
@@ -105,7 +108,7 @@ const TeamPage = () => {
             <Grid item xs={12} sm={4}>
               <div className="flex flex-row h-full items-center justify-center w-full">
                 <img
-                  src={TeamText.member4.picture_path} // Replace with your image URL
+                  src={member4} // Replace with your image URL
                   alt="Circular"
                   style={{ borderRadius: '50%' }}
                   className="w-48 h-56"
